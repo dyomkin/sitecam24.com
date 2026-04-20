@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>[BRAND] — Tajmlaps i filmska produkcija gradnje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #080807;
+    --surface: #101010;
+    --surface2: #161614;
+    --border: #222220;
+    --gold: #c8a45a;
+    --gold-dim: #a07840;
+    --gold-pale: rgba(200,164,90,0.12);
+    --white: #f0ede6;
+    --muted: #ccc8c0;
+    --muted2: #a09890;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  * { cursor: auto; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    background: rgba(8,8,7,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 48px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold-dim);
+    padding: 10px 24px;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover {
+    background: var(--gold-pale);
+    border-color: var(--gold);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 80vh;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 100px 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(8,8,7,0.96) 40%, rgba(8,8,7,0.4) 100%),
+      linear-gradient(to top, rgba(8,8,7,1) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  /* Animated construction grid lines */
+  .hero-lines {
+    position: absolute; inset: 0; z-index: 0;
+    overflow: hidden;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,164,90,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,164,90,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridDrift 30s linear infinite;
+  }
+  @keyframes gridDrift {
+    from { transform: translateY(0); }
+    to { transform: translateY(80px); }
+  }
+
+  /* Vertical accent line */
+  .hero-accent-line {
+    position: absolute; top: 0; right: 380px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold-dim) 30%, var(--gold-dim) 70%, transparent);
+    z-index: 2; opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative; z-index: 3;
+    max-width: 780px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 16px;
+    
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 10px;
+    
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-title-sr {
+    font-family: 'Cormorant', serif;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+    
+  }
+
+  .hero-sub {
+    display: flex; gap: 60px; align-items: flex-start;
+    
+  }
+  .hero-desc {
+    max-width: 420px;
+  }
+  .hero-desc p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .hero-desc p.sr {
+    font-size: 0.85rem;
+    color: var(--muted2);
+    font-style: italic;
+  }
+
+  .hero-stats {
+    display: flex; flex-direction: column; gap: 24px;
+    border-left: 1px solid var(--border);
+    padding-left: 48px;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Cormorant', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+    50% { opacity: 1; transform: scaleY(0.6); }
+  }
+
+    to { opacity: 1; transform: translateY(0); }
+  }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 120px 60px; }
+
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 60px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 30px; height: 1px; background: var(--gold);
+  }
+
+  /* ─── SHOWREEL ─── */
+  .showreel {
+    padding: 0 60px 60px;
+    background: var(--black);
+  }
+  .showreel-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .showreel-label::before {
+    content: ''; display: block;
+    width: 30px; height: 1px; background: var(--gold);
+  }
+  .showreel-heading {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+  .showreel-heading em { font-style: italic; color: var(--gold); }
+  .showreel-heading-en {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .showreel-frame {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+  }
+  .showreel-frame iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+    display: block;
+    background: #000;
+    z-index: 2;
+  }
+  .showreel-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 20px;
+    background: var(--surface2);
+  }
+  .play-icon {
+    width: 72px; height: 72px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-size: 1.6rem;
+    padding-left: 4px;
+    transition: all 0.3s;
+    animation: pulseBorder 2.5s ease infinite;
+  }
+    50% { box-shadow: 0 0 0 12px rgba(200,164,90,0.08); }
+  }
+  .placeholder-text {
+    font-family: 'Cormorant', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── MANIFESTO ─── */
+  .manifesto {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .manifesto-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 100px;
+    align-items: center;
+  }
+  .manifesto-quote {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--white);
+  }
+  .manifesto-quote em { color: var(--gold); font-style: italic; }
+  .manifesto-quote-sr {
+    font-family: 'Cormorant', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+  .manifesto-body p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .manifesto-body p.sr {
+    font-size: 0.85rem;
+    color: var(--muted2);
+    font-style: italic;
+    border-left: 2px solid var(--border);
+    padding-left: 16px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: var(--black);
+    padding: 52px 48px;
+    transition: background 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+  .service-card:hover { background: var(--surface2); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: 'Cormorant', serif;
+    font-size: 0.8rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+  }
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .service-title-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .service-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .service-desc-sr {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--muted2);
+    font-style: italic;
+  }
+  .service-icon {
+    position: absolute; bottom: 32px; right: 40px;
+    font-size: 2.5rem; opacity: 0.08;
+    transition: opacity 0.3s;
+    font-family: 'Cormorant', serif;
+  }
+  .service-card:hover .service-icon { opacity: 0.15; }
+
+  /* ─── HOW IT WORKS ─── */
+  .how {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .how-header {
+    max-width: 1200px; margin: 0 auto 80px;
+  }
+  .how-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+  }
+  .how-title-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .steps {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 10%; right: 10%;
+    height: 1px; background: var(--border);
+    z-index: 0;
+  }
+  .step {
+    padding: 0 32px;
+    position: relative;
+  }
+  .step-dot {
+    width: 56px; height: 56px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 32px;
+    background: var(--black);
+    position: relative; z-index: 1;
+    transition: border-color 0.3s;
+  }
+  .step:hover .step-dot { border-color: var(--gold); }
+  .step-dot-num {
+    font-family: 'Cormorant', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .step-title-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .step-desc {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ─── CLIENTS ─── */
+  .clients-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 380px 1fr; gap: 100px;
+    align-items: start;
+  }
+  .clients-left {}
+  .clients-heading {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .clients-heading-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .clients-p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .clients-p.sr { font-size: 0.8rem; color: var(--muted2); font-style: italic; }
+
+  .client-types {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid var(--border);
+  }
+  .client-type {
+    padding: 32px 36px;
+    border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 48px 1fr; gap: 24px;
+    align-items: start;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .client-type:last-child { border-bottom: none; }
+  .client-type:hover { background: var(--surface2); }
+  .client-type-icon {
+    font-size: 1.4rem; padding-top: 4px; opacity: 0.7;
+  }
+  .client-type-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .client-type-title-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .client-type-desc {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ─── PRODUCT ─── */
+  .product {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .product-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+  .product-heading {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+  .product-heading-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 64px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .product-item {
+    background: var(--black);
+    padding: 48px 40px;
+    transition: background 0.3s;
+  }
+  .product-item:hover { background: var(--surface2); }
+  .product-item-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .product-item-title-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .product-item-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ─── CTA ─── */
+  .cta {
+    padding: 140px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,164,90,0.06) 0%, transparent 70%);
+  }
+  .cta-inner {
+    position: relative; z-index: 1;
+    max-width: 700px; margin: 0 auto;
+  }
+  .cta-heading {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .cta-heading em { font-style: italic; color: var(--gold); }
+  .cta-heading-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .cta-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .cta-sub.sr { font-size: 0.82rem; color: var(--muted2); font-style: italic; margin-bottom: 56px; }
+
+  .cta-buttons {
+    display: flex; gap: 20px; justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    text-decoration: none;
+    padding: 16px 48px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+  .btn-secondary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    text-decoration: none;
+    padding: 16px 48px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .contact-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  }
+  .contact-info {}
+  .contact-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .contact-heading {
+    font-family: 'Cormorant', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+  .contact-heading-sr {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .contact-line {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .contact-line a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-line a:hover { color: var(--white); }
+
+  .contact-form {}
+  .form-group { margin-bottom: 24px; }
+  .form-group label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--gold-dim); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted2); }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: background 0.3s;
+  }
+  .form-submit:hover { background: var(--white); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+  }
+  .footer-links {
+    display: flex; gap: 32px;
+  }
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 0 20px 30px; }
+    .showreel { padding: 0 20px 40px; }
+    .manifesto-inner { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+    .steps::before { display: none; }
+    .clients-inner { grid-template-columns: 1fr; gap: 48px; }
+    .product-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { flex-direction: column; align-items: center; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">[ <span>BRAND</span> ]</a>
+  <ul class="nav-links">
+    <li><a href="#services">Usluge</a></li>
+    <li><a href="#how">Proces</a></li>
+    <li><a href="#clients">Klijenti</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Pišite nam</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-lines"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-accent-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Tajmlaps i filmska produkcija gradnje</div>
+
+    <h1 class="hero-title">
+      Snimamo<br/>
+      <em>priču</em><br/>
+      vaše gradnje.
+    </h1>
+
+    <p class="hero-title-sr">We film the story of your build.</p>
+
+    <div class="hero-sub">
+      <div class="hero-desc">
+        <p>Od prvih temelja do primopredaje — industrijska kamera na gradilištu, filmska ekipa, gotov video koji prodaje vaš sledeći projekat pre nego što lopata udari u zemlju.</p>
+        <p class="sr">From first concrete to final handover — industrial cameras on-site, cinematic production team, a finished film that sells your next project before it breaks ground.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Continuous capture</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6K</div>
+          <div class="stat-label">Resolution</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">360°</div>
+          <div class="stat-label">Site coverage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SHOWREEL -->
+<section class="showreel">
+  <div class="showreel-frame">
+    <iframe src="https://www.youtube.com/embed/79R8ytu7LgA?autoplay=1&mute=1&rel=0&modestbranding=1&color=white&playsinline=1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  </div>
+</section>
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <div>
+      <div class="manifesto-quote">
+        Kupci ne kupuju nacrte.<br/>
+        Kupuju <em>dokaz</em>.
+      </div>
+      <div class="manifesto-quote-sr">Buyers don't buy blueprints. They buy proof.</div>
+    </div>
+    <div class="manifesto-body">
+      <p>Svaki veliki stambeni projekat prodaje stanove pre nego što se vidi ijedna spratnost. Vaši kupci ulažu ozbiljan novac na osnovu poverenja — poverenja koje morate da gradite i održavate, mesec za mesecom, kroz ubedljive vizuelne dokaze da gradnja teče brzo i profesionalno.</p>
+      <p>Mi to rešavamo hardverom koji nikad ne spava i produkcijskom ekipom koja od sirovog materijala pravi film koji pokreće ljude — i zatvara prodaju.</p>
+      <p class="sr">Every major residential development pre-sells apartments before the structure is visible. We solve that with hardware that never sleeps and a production team that turns raw footage into the kind of film that closes sales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">Naše usluge / Our Services</div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Instalacija tajmlaps kamere</div>
+      <div class="service-title-sr">Timelapse Camera Installation</div>
+      <p class="service-desc">Postavljamo industrijsku 24MP kameru trajno na vaše gradilište — otpornu na sve vremenske uslove, napajanu solarom, sa radom od −50°C do +60°C. Konekcija 3G/4G/5G, do 2TB memorije. Radi svuda.</p>
+      <p class="service-desc-sr">Industrial-grade 24MP timelapse camera, permanently installed, weatherproof, solar-powered. 3G/4G/5G connectivity, up to 2TB onboard storage.</p>
+      <div class="service-icon">◎</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Gotov filmski proizvod</div>
+      <div class="service-title-sr">Finished Cinematic Film</div>
+      <p class="service-desc">Sirovi tajmlaps je samo početak. Naša produkcijska ekipa isporučuje kompletan video: tajmlaps sekvence, snimanje sa terena, aero snimci dronom, infografike, muzika i narativni okvir — funkcioniše i kao marketing i kao dokumentacija.</p>
+      <p class="service-desc-sr">Raw timelapse is just the beginning. Complete film: timelapse sequences, operator footage, drone aerials, infographics, music and narrative — ready to publish.</p>
+      <div class="service-icon">▶</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Snimanje dronom</div>
+      <div class="service-title-sr">Aerial &amp; Drone Coverage</div>
+      <p class="service-desc">Dinamični aero snimci i panoramski prikazi gradilišta. Fotogrametrija za tehničku dokumentaciju. Inspekcija i kontrola kvaliteta iz vazduha. Dolet do 5km, brzina do 90 km/h.</p>
+      <p class="service-desc-sr">Dynamic aerial footage, panoramic overviews, photogrammetry, inspection. Flight range 5km, up to 90 km/h.</p>
+      <div class="service-icon">◈</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Live monitoring i web widget</div>
+      <div class="service-title-sr">Live Monitoring &amp; Web Widget</div>
+      <p class="service-desc">Sve kamere u jednom ekranu — mobilna aplikacija, video arhiva sa vremenskom linijom, integracija u CMS. Ugradite live prikaz gradilišta na vaš sajt jednim klikom. Pokažite kupcima da gradnja teče — sada.</p>
+      <p class="service-desc-sr">All cameras in one dashboard, mobile app, video archive, CMS integration. Embed a live site feed on your website with a single click.</p>
+      <div class="service-icon">◻</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <div class="how-header">
+    <div class="section-label">Kako funkcioniše / How It Works</div>
+    <div class="how-title">Jednostavan proces.<br/>Izuzetan rezultat.</div>
+    <div class="how-title-sr">Simple process. Exceptional output.</div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot"><span class="step-dot-num">I</span></div>
+      <div class="step-title">Procena lokacije</div>
+      <div class="step-title-sr">Site Assessment</div>
+      <p class="step-desc">Posetimo gradilište, procenimo optimalne pozicije za kamere, opcije napajanja i konekcije, i dogovorimo plan snimanja u skladu sa dinamikom vašeg projekta.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot"><span class="step-dot-num">II</span></div>
+      <div class="step-title">Instalacija opreme</div>
+      <div class="step-title-sr">Hardware Installation</div>
+      <p class="step-desc">Industrijske kamere se postavljaju i kalibrišu. Aktivira se daljinski monitoring. Vaše gradilište počinje da akumulira materijal od prvog dana.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot"><span class="step-dot-num">III</span></div>
+      <div class="step-title">Neprekidno snimanje</div>
+      <div class="step-title-sr">Continuous Capture</div>
+      <p class="step-desc">Kamere rade autonomno — 24/7, po svakom vremenu. Materijal je dostupan putem vaše kontrolne table i live widgeta u svakom trenutku, za sve zainteresovane strane.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot"><span class="step-dot-num">IV</span></div>
+      <div class="step-title">Filmska isporuka</div>
+      <div class="step-title-sr">Cinematic Delivery</div>
+      <p class="step-desc">Na ključnim prekretnicama ili završetku projekta, naš tim isporučuje gotov film: montiran, sa muzikom, brendiran — spreman za objavu, prezentaciju i prodaju.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="clients-inner">
+    <div class="clients-left">
+      <div class="section-label">Sa kime radimo / Who We Work With</div>
+      <h2 class="clients-heading">Za ljude koji grade.</h2>
+      <div class="clients-heading-sr">Built for the people who build.</div>
+      <p class="clients-p">Naši klijenti su investitori, izvođači i vlasnici projekata koji razumeju da vizuelni dokaz ima komercijalnu vrednost — a kupci, finansijeri i investitori moraju da vide napredak, ne samo obećanja.</p>
+      <p class="clients-p sr">Our clients are developers, contractors, and project owners who understand that visual evidence is commercial leverage.</p>
+    </div>
+    <div class="client-types">
+      <div class="client-type">
+        <div class="client-type-icon">🏗</div>
+        <div>
+          <div class="client-type-title">Stambeni investitori</div>
+          <div class="client-type-title-sr">Mass Residential Developers</div>
+          <p class="client-type-desc">Prodaja u izgradnji zavisi od poverenja kupaca. Naši filmovi demonstriraju brzinu i kvalitet gradnje, direktno podržavaju pretprodaju i smanjuju anksioznost kupaca.</p>
+        </div>
+      </div>
+      <div class="client-type">
+        <div class="client-type-icon">🏛</div>
+        <div>
+          <div class="client-type-title">Infrastrukturni i javni projekti</div>
+          <div class="client-type-title-sr">Infrastructure &amp; Public Projects</div>
+          <p class="client-type-desc">Elektrane, prečistači, saobraćajni čvorovi — veliki javni projekti zahtevaju formalnu vizuelnu dokumentaciju napretka za izveštavanje, usaglašenost i javnu komunikaciju.</p>
+        </div>
+      </div>
+      <div class="client-type">
+        <div class="client-type-icon">🌐</div>
+        <div>
+          <div class="client-type-title">Strani investitori i finansijeri</div>
+          <div class="client-type-title-sr">International Investors &amp; Lenders</div>
+          <p class="client-type-desc">Strani kapital zahteva strukturisano izveštavanje o napretku. Mesečni video izveštaji po prekretnicama pružaju dokumentaciju koju finansijeri i inostrani suinvestitori traže.</p>
+        </div>
+      </div>
+      <div class="client-type">
+        <div class="client-type-icon">🏢</div>
+        <div>
+          <div class="client-type-title">Generalni izvođači</div>
+          <div class="client-type-title-sr">General Contractors</div>
+          <p class="client-type-desc">Zaštitite sebe stalnim vizuelnim zapisom. Dokumentujte tačno šta je izgrađeno, kada i kako — neprocenjivo za sporove, primopredaju i buduće tendere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT DETAIL -->
+<section class="product">
+  <div class="product-inner">
+    <div class="section-label">Kompletan paket / The Full Package</div>
+    <h2 class="product-heading">Sve u jednoj saradnji.</h2>
+    <div class="product-heading-sr">Everything in one engagement.</div>
+
+    <div class="product-grid">
+      <div class="product-item">
+        <div class="product-item-title">Oprema</div>
+        <div class="product-item-title-sr">Hardware</div>
+        <p class="product-item-desc">24MP industrijska tajmlaps kamera. 6K panoramsko snimanje. 2TB SSD. Solarno + baterijsko napajanje. Radi od −50°C do +60°C. 3G/4G/5G, LTE, Ethernet, Wi-Fi, Satelit.</p>
+      </div>
+      <div class="product-item">
+        <div class="product-item-title">Monitoring uživo</div>
+        <div class="product-item-title-sr">Live Monitoring</div>
+        <p class="product-item-desc">Mobilna aplikacija za sve zainteresovane strane. Video arhiva sa vremenskom linijom. Widget za sajt jednim klikom. CMS integracija. Opcija 360° monitoringa.</p>
+      </div>
+      <div class="product-item">
+        <div class="product-item-title">Filmska produkcija</div>
+        <div class="product-item-title-sr">Film Production</div>
+        <p class="product-item-desc">Montiran tajmlaps. Snimanje sa terena. Aero snimci dronom. Profesionalni titlovi, infografike, 3D vizualizacije. Muzika i naracija. Brendiran, spreman za objavu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="cta-heading">Dokumentujte<br/><em>ono što gradite.</em></h2>
+    <div class="cta-heading-sr">Spremni ste da dokumentujete ono što gradite?</div>
+    <p class="cta-sub">Recite nam o svom projektu. Mi se brinemo o svemu — od procene lokacije do gotovog filma.</p>
+    <p class="cta-sub sr">Tell us about your project. We'll handle everything from site assessment to the final film.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-primary">Pišite nam</a>
+      <a href="#services" class="btn-secondary">Naše usluge</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="contact-label">Contact / Kontakt</div>
+      <h3 class="contact-heading">Razgovarajmo o vašem projektu.</h3>
+      <div class="contact-heading-sr">Let's talk about your project.</div>
+
+      <p class="contact-line">Radimo u Srbiji i celom Balkanskom regionu. Inicijalni razgovor je uvek besplatan.</p>
+      <br/>
+      <p class="contact-line"><strong style="color:var(--white)">Email:</strong> <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6cfd9c3c4d4c4d7d8d298d5d9db"><span class="__cf_email__" data-cfemail="3d55585151527d4452484f5f4f5c5359135e5250">[email&#160;protected]</span></a></p>
+      <p class="contact-line"><strong style="color:var(--white)">Phone:</strong> <a href="tel:+381000000000">+381 00 000 0000</a></p>
+      <p class="contact-line"><strong style="color:var(--white)">Location:</strong> Belgrade &amp; Novi Sad, Serbia</p>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Vaše ime / Your name</label>
+        <input type="text" placeholder="Marko Nikolić"/>
+      </div>
+      <div class="form-group">
+        <label>Kompanija / Company</label>
+        <input type="text" placeholder="ABC Invest d.o.o."/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="marko@company.rs"/>
+      </div>
+      <div class="form-group">
+        <label>O vašem projektu / About your project</label>
+        <textarea rows="4" placeholder="Veličina projekta, lokacija, rokovi..."></textarea>
+      </div>
+      <button class="form-submit">Pošalji poruku / Send message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">[ <span>BRAND</span> ]</a>
+  <div class="footer-copy">© 2025 [BRAND]. Sva prava zadržana.</div>
+  <div class="footer-links">
+    <a href="#services">Usluge</a>
+    <a href="#how">Proces</a>
+    <a href="#clients">Klijenti</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+</footer>
+
+
+</body>
+</html>
