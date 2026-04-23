@@ -1,1148 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>[BRAND] — Tajmlaps i filmska produkcija gradnje</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SiteCam 24 - Construction Timelapse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --black: #080807;
-    --surface: #101010;
-    --surface2: #161614;
-    --border: #222220;
-    --gold: #c8a45a;
-    --gold-dim: #a07840;
-    --gold-pale: rgba(200,164,90,0.12);
-    --white: #f0ede6;
-    --muted: #ccc8c0;
-    --muted2: #a09890;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-  * { cursor: auto; }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 28px 60px;
-    background: rgba(8,8,7,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex; gap: 48px; list-style: none;
-  }
-  .nav-links a {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    border: 1px solid var(--gold-dim);
-    padding: 10px 24px;
-    transition: all 0.3s;
-  }
-  .nav-cta:hover {
-    background: var(--gold-pale);
-    border-color: var(--gold);
-  }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 80vh;
-    display: flex; flex-direction: column;
-    justify-content: flex-end;
-    padding: 100px 60px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(to right, rgba(8,8,7,0.96) 40%, rgba(8,8,7,0.4) 100%),
-      linear-gradient(to top, rgba(8,8,7,1) 0%, transparent 60%);
-    z-index: 1;
-  }
-
-  /* Animated construction grid lines */
-  .hero-lines {
-    position: absolute; inset: 0; z-index: 0;
-    overflow: hidden;
-  }
-  .hero-lines::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(200,164,90,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,164,90,0.04) 1px, transparent 1px);
-    background-size: 80px 80px;
-    animation: gridDrift 30s linear infinite;
-  }
-  @keyframes gridDrift {
-    from { transform: translateY(0); }
-    to { transform: translateY(80px); }
-  }
-
-  /* Vertical accent line */
-  .hero-accent-line {
-    position: absolute; top: 0; right: 380px; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--gold-dim) 30%, var(--gold-dim) 70%, transparent);
-    z-index: 2; opacity: 0.5;
-  }
-
-  .hero-content {
-    position: relative; z-index: 3;
-    max-width: 780px;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
-    display: flex; align-items: center; gap: 16px;
-    
-  }
-  .hero-eyebrow::before {
-    content: ''; display: block;
-    width: 40px; height: 1px; background: var(--gold);
-  }
-
-  .hero-title {
-    font-family: 'Cormorant', serif;
-    font-weight: 300;
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    line-height: 1.0;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    margin-bottom: 10px;
-    
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-title-sr {
-    font-family: 'Cormorant', serif;
-    font-weight: 300;
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    color: var(--muted);
-    font-style: italic;
-    margin-bottom: 48px;
-    letter-spacing: 0.02em;
-    
-  }
-
-  .hero-sub {
-    display: flex; gap: 60px; align-items: flex-start;
-    
-  }
-  .hero-desc {
-    max-width: 420px;
-  }
-  .hero-desc p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .hero-desc p.sr {
-    font-size: 0.85rem;
-    color: var(--muted2);
-    font-style: italic;
-  }
-
-  .hero-stats {
-    display: flex; flex-direction: column; gap: 24px;
-    border-left: 1px solid var(--border);
-    padding-left: 48px;
-  }
-  .stat-item {}
-  .stat-num {
-    font-family: 'Cormorant', serif;
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-    50% { opacity: 1; transform: scaleY(0.6); }
-  }
-
-    to { opacity: 1; transform: translateY(0); }
-  }
-  }
-
-  /* ─── SECTION BASE ─── */
-  section { padding: 120px 60px; }
-
-  .section-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 60px;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .section-label::before {
-    content: ''; display: block;
-    width: 30px; height: 1px; background: var(--gold);
-  }
-
-  /* ─── SHOWREEL ─── */
-  .showreel {
-    padding: 0 60px 60px;
-    background: var(--black);
-  }
-  .showreel-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .showreel-label::before {
-    content: ''; display: block;
-    width: 30px; height: 1px; background: var(--gold);
-  }
-  .showreel-heading {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 300;
-    margin-bottom: 6px;
-    color: var(--white);
-  }
-  .showreel-heading em { font-style: italic; color: var(--gold); }
-  .showreel-heading-en {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--muted);
-    margin-bottom: 40px;
-  }
-  .showreel-frame {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-  }
-  .showreel-frame iframe {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: none;
-    display: block;
-    background: #000;
-    z-index: 2;
-  }
-  .showreel-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 20px;
-    background: var(--surface2);
-  }
-  .play-icon {
-    width: 72px; height: 72px;
-    border: 1px solid var(--gold-dim);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold);
-    font-size: 1.6rem;
-    padding-left: 4px;
-    transition: all 0.3s;
-    animation: pulseBorder 2.5s ease infinite;
-  }
-    50% { box-shadow: 0 0 0 12px rgba(200,164,90,0.08); }
-  }
-  .placeholder-text {
-    font-family: 'Cormorant', serif;
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  /* ─── MANIFESTO ─── */
-  .manifesto {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .manifesto-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 100px;
-    align-items: center;
-  }
-  .manifesto-quote {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 300;
-    line-height: 1.3;
-    color: var(--white);
-  }
-  .manifesto-quote em { color: var(--gold); font-style: italic; }
-  .manifesto-quote-sr {
-    font-family: 'Cormorant', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--muted);
-    margin-top: 16px;
-  }
-  .manifesto-body p {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .manifesto-body p.sr {
-    font-size: 0.85rem;
-    color: var(--muted2);
-    font-style: italic;
-    border-left: 2px solid var(--border);
-    padding-left: 16px;
-  }
-
-  /* ─── SERVICES ─── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .service-card {
-    background: var(--black);
-    padding: 52px 48px;
-    transition: background 0.4s;
-    position: relative;
-    overflow: hidden;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease;
-  }
-  .service-card:hover { background: var(--surface2); }
-  .service-card:hover::before { transform: scaleX(1); }
-
-  .service-num {
-    font-family: 'Cormorant', serif;
-    font-size: 0.8rem;
-    color: var(--gold-dim);
-    letter-spacing: 0.2em;
-    margin-bottom: 24px;
-  }
-  .service-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-  .service-title-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .service-desc {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .service-desc-sr {
-    font-size: 0.8rem;
-    line-height: 1.6;
-    color: var(--muted2);
-    font-style: italic;
-  }
-  .service-icon {
-    position: absolute; bottom: 32px; right: 40px;
-    font-size: 2.5rem; opacity: 0.08;
-    transition: opacity 0.3s;
-    font-family: 'Cormorant', serif;
-  }
-  .service-card:hover .service-icon { opacity: 0.15; }
-
-  /* ─── HOW IT WORKS ─── */
-  .how {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .how-header {
-    max-width: 1200px; margin: 0 auto 80px;
-  }
-  .how-title {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300;
-  }
-  .how-title-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--muted);
-    margin-top: 8px;
-  }
-
-  .steps {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-    position: relative;
-  }
-  .steps::before {
-    content: '';
-    position: absolute; top: 28px; left: 10%; right: 10%;
-    height: 1px; background: var(--border);
-    z-index: 0;
-  }
-  .step {
-    padding: 0 32px;
-    position: relative;
-  }
-  .step-dot {
-    width: 56px; height: 56px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 32px;
-    background: var(--black);
-    position: relative; z-index: 1;
-    transition: border-color 0.3s;
-  }
-  .step:hover .step-dot { border-color: var(--gold); }
-  .step-dot-num {
-    font-family: 'Cormorant', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--gold);
-  }
-  .step-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 4px;
-    color: var(--white);
-  }
-  .step-title-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
-  .step-desc {
-    font-size: 0.82rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  /* ─── CLIENTS ─── */
-  .clients-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 380px 1fr; gap: 100px;
-    align-items: start;
-  }
-  .clients-left {}
-  .clients-heading {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
-  .clients-heading-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
-  .clients-p {
-    font-size: 0.88rem;
-    line-height: 1.8;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .clients-p.sr { font-size: 0.8rem; color: var(--muted2); font-style: italic; }
-
-  .client-types {
-    display: flex; flex-direction: column; gap: 0;
-    border: 1px solid var(--border);
-  }
-  .client-type {
-    padding: 32px 36px;
-    border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 48px 1fr; gap: 24px;
-    align-items: start;
-    transition: background 0.3s;
-    cursor: default;
-  }
-  .client-type:last-child { border-bottom: none; }
-  .client-type:hover { background: var(--surface2); }
-  .client-type-icon {
-    font-size: 1.4rem; padding-top: 4px; opacity: 0.7;
-  }
-  .client-type-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-  .client-type-title-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-  .client-type-desc {
-    font-size: 0.82rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  /* ─── PRODUCT ─── */
-  .product {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .product-inner {
-    max-width: 1200px; margin: 0 auto;
-  }
-  .product-heading {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 300;
-    margin-bottom: 10px;
-  }
-  .product-heading-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin-bottom: 64px;
-  }
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .product-item {
-    background: var(--black);
-    padding: 48px 40px;
-    transition: background 0.3s;
-  }
-  .product-item:hover { background: var(--surface2); }
-  .product-item-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    color: var(--gold);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-  }
-  .product-item-title-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 18px;
-  }
-  .product-item-desc {
-    font-size: 0.85rem;
-    line-height: 1.7;
-    color: var(--muted);
-  }
-
-  /* ─── CTA ─── */
-  .cta {
-    padding: 140px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,164,90,0.06) 0%, transparent 70%);
-  }
-  .cta-inner {
-    position: relative; z-index: 1;
-    max-width: 700px; margin: 0 auto;
-  }
-  .cta-heading {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 12px;
-  }
-  .cta-heading em { font-style: italic; color: var(--gold); }
-  .cta-heading-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--muted);
-    margin-bottom: 40px;
-  }
-  .cta-sub {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 8px;
-  }
-  .cta-sub.sr { font-size: 0.82rem; color: var(--muted2); font-style: italic; margin-bottom: 56px; }
-
-  .cta-buttons {
-    display: flex; gap: 20px; justify-content: center;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--gold);
-    text-decoration: none;
-    padding: 16px 48px;
-    transition: all 0.3s;
-    display: inline-block;
-  }
-  .btn-primary:hover {
-    background: var(--white);
-    color: var(--black);
-  }
-  .btn-secondary {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold-dim);
-    text-decoration: none;
-    padding: 16px 48px;
-    transition: all 0.3s;
-    display: inline-block;
-  }
-  .btn-secondary:hover {
-    border-color: var(--gold);
-    background: var(--gold-pale);
-  }
-
-  /* ─── CONTACT ─── */
-  .contact {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-  }
-  .contact-inner {
-    max-width: 900px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-  }
-  .contact-info {}
-  .contact-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 32px;
-  }
-  .contact-heading {
-    font-family: 'Cormorant', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    margin-bottom: 8px;
-  }
-  .contact-heading-sr {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
-  .contact-line {
-    font-size: 0.88rem;
-    color: var(--muted);
-    margin-bottom: 8px;
-    line-height: 1.6;
-  }
-  .contact-line a {
-    color: var(--gold);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .contact-line a:hover { color: var(--white); }
-
-  .contact-form {}
-  .form-group { margin-bottom: 24px; }
-  .form-group label {
-    display: block;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    background: var(--black);
-    border: 1px solid var(--border);
-    color: var(--white);
-    padding: 14px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
-    outline: none;
-    transition: border-color 0.3s;
-    resize: none;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--gold-dim); }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--muted2); }
-
-  .form-submit {
-    width: 100%;
-    background: var(--gold);
-    color: var(--black);
-    border: none;
-    padding: 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: background 0.3s;
-  }
-  .form-submit:hover { background: var(--white); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 40px 60px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-  }
-  .footer-logo span { color: var(--gold); }
-  .footer-copy {
-    font-size: 0.72rem;
-    color: var(--muted2);
-    letter-spacing: 0.1em;
-  }
-  .footer-links {
-    display: flex; gap: 32px;
-  }
-  .footer-links a {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted2);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .footer-links a:hover { color: var(--gold); }
-
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
-    section { padding: 60px 20px; }
-    .hero { padding: 0 20px 30px; }
-    .showreel { padding: 0 20px 40px; }
-    .manifesto-inner { grid-template-columns: 1fr; gap: 48px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
-    .steps::before { display: none; }
-    .clients-inner { grid-template-columns: 1fr; gap: 48px; }
-    .product-grid { grid-template-columns: 1fr; }
-    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-    footer { flex-direction: column; gap: 20px; text-align: center; }
-    .footer-links { flex-direction: column; align-items: center; gap: 12px; }
-  }
+  :root{--black:#080807;--surface:#111110;--surface2:#171714;--border:#24231f;--gold:#c8a45a;--gold-dim:#9c773d;--gold-pale:rgba(200,164,90,.12);--white:#f0ede6;--muted:#cdc8bf;--muted2:#9f978f}
+  *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:"DM Sans",sans-serif;font-weight:300;overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 56px;background:rgba(8,8,7,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .logo,.footer-logo{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;color:var(--white)} .logo span,.footer-logo span{color:var(--gold)}
+  .logo{font-size:1.05rem}.footer-logo{font-size:.9rem;color:var(--muted)}
+  .nav-links,.footer-links{display:flex;gap:30px;list-style:none;align-items:center}
+  .nav-links a,.footer-links a,.nav-cta,.lang-btn{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+  .nav-links a,.footer-links a{color:var(--muted)} .nav-links a:hover,.footer-links a:hover{color:var(--white)}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .lang-switcher{display:inline-flex;gap:6px;padding:6px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+  .lang-btn{border:none;background:transparent;color:var(--muted2);padding:8px 10px;cursor:pointer}.lang-btn.active,.lang-btn:hover{background:var(--gold);color:var(--black)}
+  .nav-cta,.btn-secondary{color:var(--gold);border:1px solid var(--gold-dim);padding:12px 22px;transition:.25s}
+  .nav-cta:hover,.btn-secondary:hover{background:var(--gold-pale);border-color:var(--gold)}
+  section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-bottom:56px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+  .hero-bg,.hero-lines,.hero-accent{position:absolute;inset:0}.hero-bg{background:linear-gradient(to right,rgba(8,8,7,.96) 38%,rgba(8,8,7,.45) 100%),linear-gradient(to top,rgba(8,8,7,1) 0%,transparent 60%);z-index:1}
+  .hero-lines::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,90,.04) 1px,transparent 1px);background-size:80px 80px;animation:grid 30s linear infinite}
+  .hero-accent{left:auto;right:26%;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-dim) 25%,var(--gold-dim) 75%,transparent);opacity:.45;z-index:2}
+  @keyframes grid{from{transform:translateY(0)}to{transform:translateY(80px)}}
+  .hero-content,.wrap{position:relative;z-index:3;max-width:1200px;margin:0 auto;width:100%}
+  .eyebrow,.section-label,.contact-label{display:flex;align-items:center;gap:16px;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
+  .eyebrow::before,.section-label::before{content:"";width:36px;height:1px;background:var(--gold)}
+  .hero-title,.section-title,.cta-title,.contact-title{font-family:"Cormorant",serif;font-weight:300;color:var(--white)} em{font-style:italic;color:var(--gold)}
+  .hero-title{font-size:clamp(3.4rem,7vw,7rem);line-height:.98;max-width:760px;margin-bottom:14px}
+  .subtitle{font-family:"Cormorant",serif;font-size:1.08rem;font-style:italic;color:var(--muted)}
+  .hero .subtitle{margin-bottom:42px}
+  .hero-sub{display:flex;gap:62px;align-items:flex-start;max-width:1080px}
+  .hero-copy{max-width:500px}.hero-copy p,.manifesto p,.card p,.step p,.client p,.cta-copy,.contact-copy,.contact-line{color:var(--muted);line-height:1.75}
+  .hero-copy p,.cta-copy,.contact-line,.contact-copy{font-size:.96rem}
+  .hero-stats{display:flex;flex-direction:column;gap:28px;padding-left:44px;border-left:1px solid var(--border)}
+  .stat-num{font-family:"Cormorant",serif;font-size:2.2rem;font-weight:600;color:var(--gold);line-height:1}.stat-label{margin-top:6px;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
+  .showreel{padding-top:0}.video{position:relative;width:100%;background:var(--surface);border:1px solid var(--border);overflow:hidden;padding-bottom:56.25%;height:0}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:none;background:#000}
+  .manifesto,.process,.contact{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .manifesto-grid,.clients-grid,.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start}
+  .section-title{font-size:clamp(2rem,3.5vw,3rem);line-height:1.14;margin-bottom:8px}.section-copy{font-size:.92rem;margin-top:18px}
+  .cards,.product-grid{display:grid;gap:1px;background:var(--border);border:1px solid var(--border)}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card,.product-item{background:var(--black);position:relative;transition:.25s}.card:hover,.product-item:hover,.client:hover{background:var(--surface2)}
+  .card{padding:50px 46px;overflow:hidden}.card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.35s}.card:hover::before{transform:scaleX(1)}
+  .num{font-family:"Cormorant",serif;font-size:.8rem;color:var(--gold-dim);letter-spacing:.2em;margin-bottom:22px}
+  .card h3,.step h3,.client h3,.product-item h3{font-family:"Syne",sans-serif;font-weight:700;color:var(--white);font-size:.92rem;letter-spacing:.04em}
+  .card h3{font-size:1.24rem;margin-bottom:14px}.card p,.step p,.client p,.product-item p{font-size:.86rem}.icon{position:absolute;right:34px;bottom:28px;font-size:2.3rem;opacity:.12}
+  .process-head{margin-bottom:76px}.steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;max-width:1200px;margin:0 auto}.steps::before{content:"";position:absolute;top:28px;left:8%;right:8%;height:1px;background:var(--border)}
+  .step{padding:0 28px;position:relative}.dot{width:56px;height:56px;margin-bottom:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--black);position:relative;z-index:1}.step:hover .dot{border-color:var(--gold)}
+  .dot span{font-family:"Cormorant",serif;font-size:1.1rem;font-weight:600;color:var(--gold)} .step h3,.client h3,.product-item h3{margin-bottom:12px}
+  .clients-grid{max-width:1200px;margin:0 auto;grid-template-columns:380px 1fr}.clients-list{display:flex;flex-direction:column;border:1px solid var(--border)}
+  .client{display:grid;grid-template-columns:56px 1fr;gap:22px;padding:30px 34px;border-bottom:1px solid var(--border);transition:.25s}.client:last-child{border-bottom:none}.client-icon{font-size:1.45rem;opacity:.78}
+  .product-grid{grid-template-columns:repeat(3,1fr);max-width:1200px;margin:0 auto}.product-item{padding:48px 40px}.product-item h3{text-transform:uppercase;color:var(--gold)}
+  .cta{text-align:center;position:relative;overflow:hidden}.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(200,164,90,.07) 0%,transparent 70%)}
+  .cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}.cta-title{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.05;margin-bottom:10px}.cta .subtitle{margin-bottom:28px}.cta-copy{margin-bottom:48px}
+  .cta-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:18px}.btn-primary,.btn-secondary,.submit{display:inline-block;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:16px 44px}
+  .btn-primary,.submit{border:none;background:var(--gold);color:var(--black)} .btn-primary:hover,.submit:hover{background:var(--white)}
+  .contact-grid{max-width:1200px;margin:0 auto}.contact-title{font-size:2rem;margin-bottom:8px}.contact .subtitle{margin-bottom:26px}.contact-copy{margin-bottom:18px}
+  .contact-line a{color:var(--gold);text-decoration:none}.contact-line a:hover{color:var(--white)}
+  .field{margin-bottom:22px}.field label{display:block;margin-bottom:8px;color:var(--muted);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
+  .field input,.field textarea{width:100%;border:1px solid var(--border);background:var(--black);color:var(--white);padding:14px 18px;font:inherit;outline:none;resize:none}.field input:focus,.field textarea:focus{border-color:var(--gold-dim)}
+  .field input::placeholder,.field textarea::placeholder{color:var(--muted2)}
+  footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:40px 56px;border-top:1px solid var(--border)} .footer-copy{color:var(--muted2);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+  @media (max-width:1100px){.hero-sub,.manifesto-grid,.clients-grid,.contact-grid{grid-template-columns:1fr;gap:48px}.steps{grid-template-columns:repeat(2,1fr);gap:40px 0}.steps::before,.hero-accent{display:none}}
+  @media (max-width:900px){nav,section,footer{padding-left:22px;padding-right:22px}nav{align-items:flex-start;flex-wrap:wrap;gap:14px}.nav-links{order:3;width:100%;gap:18px;flex-wrap:wrap}.nav-right{width:100%;justify-content:space-between}.cards,.product-grid,.steps{grid-template-columns:1fr}.client{grid-template-columns:40px 1fr}footer,.footer-links{flex-direction:column;text-align:center}}
 </style>
 </head>
 <body>
-
-
-<!-- NAV -->
 <nav>
-  <a href="#" class="logo">[ <span>BRAND</span> ]</a>
+  <a href="#hero" class="logo">[ <span>SiteCam</span> 24 ]</a>
   <ul class="nav-links">
-    <li><a href="#services">Usluge</a></li>
-    <li><a href="#how">Proces</a></li>
-    <li><a href="#clients">Klijenti</a></li>
-    <li><a href="#contact">Kontakt</a></li>
+    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+    <li><a href="#process" data-i18n="nav.process">Process</a></li>
+    <li><a href="#clients" data-i18n="nav.clients">Clients</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Pišite nam</a>
+  <div class="nav-right">
+    <div class="lang-switcher" aria-label="Language switcher">
+      <button class="lang-btn active" type="button" data-lang-switch="en">EN</button>
+      <button class="lang-btn" type="button" data-lang-switch="sr">SR</button>
+      <button class="lang-btn" type="button" data-lang-switch="uz">UZ</button>
+      <button class="lang-btn" type="button" data-lang-switch="ru">RU</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-i18n="nav.cta">Write to us</a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-lines"></div>
   <div class="hero-bg"></div>
-  <div class="hero-accent-line"></div>
-
+  <div class="hero-accent"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Tajmlaps i filmska produkcija gradnje</div>
-
-    <h1 class="hero-title">
-      Snimamo<br/>
-      <em>priču</em><br/>
-      vaše gradnje.
-    </h1>
-
-    <p class="hero-title-sr">We film the story of your build.</p>
-
+    <div class="eyebrow" data-i18n="hero.eyebrow">Construction timelapse and film production</div>
+    <h1 class="hero-title" data-i18n-html="hero.title">We film the <em>story</em> of your build.</h1>
+    <p class="subtitle" data-i18n="hero.subtitle">Long-term visual proof for developers, contractors, and project owners.</p>
     <div class="hero-sub">
-      <div class="hero-desc">
-        <p>Od prvih temelja do primopredaje — industrijska kamera na gradilištu, filmska ekipa, gotov video koji prodaje vaš sledeći projekat pre nego što lopata udari u zemlju.</p>
-        <p class="sr">From first concrete to final handover — industrial cameras on-site, cinematic production team, a finished film that sells your next project before it breaks ground.</p>
+      <div class="hero-copy">
+        <p data-i18n="hero.copy">From first excavation to final handover: industrial cameras on site, a production team on call, and a finished film that helps sell the next phase before the concrete is dry.</p>
       </div>
       <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Continuous capture</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">6K</div>
-          <div class="stat-label">Resolution</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">360°</div>
-          <div class="stat-label">Site coverage</div>
-        </div>
+        <div><div class="stat-num">24/7</div><div class="stat-label" data-i18n="hero.stat1">Continuous capture</div></div>
+        <div><div class="stat-num">6K</div><div class="stat-label" data-i18n="hero.stat2">Panoramic resolution</div></div>
+        <div><div class="stat-num">360&deg;</div><div class="stat-label" data-i18n="hero.stat3">Optional site coverage</div></div>
       </div>
     </div>
   </div>
-
 </section>
 
-<!-- SHOWREEL -->
 <section class="showreel">
-  <div class="showreel-frame">
-    <iframe src="https://www.youtube.com/embed/79R8ytu7LgA?autoplay=1&mute=1&rel=0&modestbranding=1&color=white&playsinline=1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  <div class="wrap">
+    <div class="section-label" data-i18n="showreel.label">Showreel</div>
+    <h2 class="section-title" data-i18n-html="showreel.title">Progress becomes a <em>sales asset</em>.</h2>
+    <p class="subtitle" style="margin-bottom:34px" data-i18n="showreel.copy">A live construction archive transformed into a publishable film.</p>
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/79R8ytu7LgA?autoplay=1&mute=1&rel=0&modestbranding=1&color=white&playsinline=1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
   </div>
 </section>
+
 <section class="manifesto">
-  <div class="manifesto-inner">
+  <div class="wrap manifesto-grid">
     <div>
-      <div class="manifesto-quote">
-        Kupci ne kupuju nacrte.<br/>
-        Kupuju <em>dokaz</em>.
-      </div>
-      <div class="manifesto-quote-sr">Buyers don't buy blueprints. They buy proof.</div>
+      <h2 class="section-title" data-i18n-html="manifesto.title">Buyers do not buy blueprints. They buy <em>proof</em>.</h2>
+      <p class="subtitle" data-i18n="manifesto.note">Strong visual evidence lowers buyer anxiety and supports pre-sales month after month.</p>
     </div>
-    <div class="manifesto-body">
-      <p>Svaki veliki stambeni projekat prodaje stanove pre nego što se vidi ijedna spratnost. Vaši kupci ulažu ozbiljan novac na osnovu poverenja — poverenja koje morate da gradite i održavate, mesec za mesecom, kroz ubedljive vizuelne dokaze da gradnja teče brzo i profesionalno.</p>
-      <p>Mi to rešavamo hardverom koji nikad ne spava i produkcijskom ekipom koja od sirovog materijala pravi film koji pokreće ljude — i zatvara prodaju.</p>
-      <p class="sr">Every major residential development pre-sells apartments before the structure is visible. We solve that with hardware that never sleeps and a production team that turns raw footage into the kind of film that closes sales.</p>
+    <div class="manifesto">
+      <p class="section-copy" data-i18n="manifesto.p1">Large residential and infrastructure projects are judged long before completion. Investors, buyers, lenders, and public stakeholders all want to see momentum, quality, and accountability in real time.</p>
+      <p class="section-copy" data-i18n="manifesto.p2">We combine industrial timelapse hardware, drone coverage, and cinematic post-production into one service that works as documentation, reporting, and marketing at once.</p>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services">
-  <div class="section-label">Naše usluge / Our Services</div>
-  <div class="services-grid">
-
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-title">Instalacija tajmlaps kamere</div>
-      <div class="service-title-sr">Timelapse Camera Installation</div>
-      <p class="service-desc">Postavljamo industrijsku 24MP kameru trajno na vaše gradilište — otpornu na sve vremenske uslove, napajanu solarom, sa radom od −50°C do +60°C. Konekcija 3G/4G/5G, do 2TB memorije. Radi svuda.</p>
-      <p class="service-desc-sr">Industrial-grade 24MP timelapse camera, permanently installed, weatherproof, solar-powered. 3G/4G/5G connectivity, up to 2TB onboard storage.</p>
-      <div class="service-icon">◎</div>
+  <div class="wrap">
+    <div class="section-label" data-i18n="services.label">Services</div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3 data-i18n="services.0.t">Timelapse camera installation</h3><p data-i18n="services.0.d">We install industrial-grade cameras directly on site: weatherproof, solar-powered, remotely accessible, and built for long-term autonomous capture.</p><div class="icon">T1</div></article>
+      <article class="card"><div class="num">02</div><h3 data-i18n="services.1.t">Finished cinematic film</h3><p data-i18n="services.1.d">Raw timelapse is only the beginning. We deliver edited films with site footage, drone sequences, music, graphics, subtitles, and brand-ready finishing.</p><div class="icon">F2</div></article>
+      <article class="card"><div class="num">03</div><h3 data-i18n="services.2.t">Drone and aerial coverage</h3><p data-i18n="services.2.d">Dynamic aerial views, panoramic site overviews, inspection support, and photogrammetry-ready capture for technical and commercial use.</p><div class="icon">A3</div></article>
+      <article class="card"><div class="num">04</div><h3 data-i18n="services.3.t">Live monitoring and web widget</h3><p data-i18n="services.3.d">A single dashboard for your cameras, project archive, and optional embeddable live feed for your website, sales office, or investor updates.</p><div class="icon">L4</div></article>
     </div>
-
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-title">Gotov filmski proizvod</div>
-      <div class="service-title-sr">Finished Cinematic Film</div>
-      <p class="service-desc">Sirovi tajmlaps je samo početak. Naša produkcijska ekipa isporučuje kompletan video: tajmlaps sekvence, snimanje sa terena, aero snimci dronom, infografike, muzika i narativni okvir — funkcioniše i kao marketing i kao dokumentacija.</p>
-      <p class="service-desc-sr">Raw timelapse is just the beginning. Complete film: timelapse sequences, operator footage, drone aerials, infographics, music and narrative — ready to publish.</p>
-      <div class="service-icon">▶</div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-title">Snimanje dronom</div>
-      <div class="service-title-sr">Aerial &amp; Drone Coverage</div>
-      <p class="service-desc">Dinamični aero snimci i panoramski prikazi gradilišta. Fotogrametrija za tehničku dokumentaciju. Inspekcija i kontrola kvaliteta iz vazduha. Dolet do 5km, brzina do 90 km/h.</p>
-      <p class="service-desc-sr">Dynamic aerial footage, panoramic overviews, photogrammetry, inspection. Flight range 5km, up to 90 km/h.</p>
-      <div class="service-icon">◈</div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <div class="service-title">Live monitoring i web widget</div>
-      <div class="service-title-sr">Live Monitoring &amp; Web Widget</div>
-      <p class="service-desc">Sve kamere u jednom ekranu — mobilna aplikacija, video arhiva sa vremenskom linijom, integracija u CMS. Ugradite live prikaz gradilišta na vaš sajt jednim klikom. Pokažite kupcima da gradnja teče — sada.</p>
-      <p class="service-desc-sr">All cameras in one dashboard, mobile app, video archive, CMS integration. Embed a live site feed on your website with a single click.</p>
-      <div class="service-icon">◻</div>
-    </div>
-
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="how">
-  <div class="how-header">
-    <div class="section-label">Kako funkcioniše / How It Works</div>
-    <div class="how-title">Jednostavan proces.<br/>Izuzetan rezultat.</div>
-    <div class="how-title-sr">Simple process. Exceptional output.</div>
+<section class="process" id="process">
+  <div class="process-head wrap">
+    <div class="section-label" data-i18n="process.label">How it works</div>
+    <h2 class="section-title" data-i18n-html="process.title">Simple process. <br />Exceptional result.</h2>
+    <p class="subtitle" data-i18n="process.copy">One team from assessment to delivery.</p>
   </div>
-
   <div class="steps">
-    <div class="step">
-      <div class="step-dot"><span class="step-dot-num">I</span></div>
-      <div class="step-title">Procena lokacije</div>
-      <div class="step-title-sr">Site Assessment</div>
-      <p class="step-desc">Posetimo gradilište, procenimo optimalne pozicije za kamere, opcije napajanja i konekcije, i dogovorimo plan snimanja u skladu sa dinamikom vašeg projekta.</p>
-    </div>
-    <div class="step">
-      <div class="step-dot"><span class="step-dot-num">II</span></div>
-      <div class="step-title">Instalacija opreme</div>
-      <div class="step-title-sr">Hardware Installation</div>
-      <p class="step-desc">Industrijske kamere se postavljaju i kalibrišu. Aktivira se daljinski monitoring. Vaše gradilište počinje da akumulira materijal od prvog dana.</p>
-    </div>
-    <div class="step">
-      <div class="step-dot"><span class="step-dot-num">III</span></div>
-      <div class="step-title">Neprekidno snimanje</div>
-      <div class="step-title-sr">Continuous Capture</div>
-      <p class="step-desc">Kamere rade autonomno — 24/7, po svakom vremenu. Materijal je dostupan putem vaše kontrolne table i live widgeta u svakom trenutku, za sve zainteresovane strane.</p>
-    </div>
-    <div class="step">
-      <div class="step-dot"><span class="step-dot-num">IV</span></div>
-      <div class="step-title">Filmska isporuka</div>
-      <div class="step-title-sr">Cinematic Delivery</div>
-      <p class="step-desc">Na ključnim prekretnicama ili završetku projekta, naš tim isporučuje gotov film: montiran, sa muzikom, brendiran — spreman za objavu, prezentaciju i prodaju.</p>
-    </div>
+    <article class="step"><div class="dot"><span>I</span></div><h3 data-i18n="process.0.t">Site assessment</h3><p data-i18n="process.0.d">We evaluate camera positions, power options, connectivity, security, and the visual goals of your project.</p></article>
+    <article class="step"><div class="dot"><span>II</span></div><h3 data-i18n="process.1.t">Hardware installation</h3><p data-i18n="process.1.d">The equipment is mounted, calibrated, and connected to remote monitoring so capture starts immediately.</p></article>
+    <article class="step"><div class="dot"><span>III</span></div><h3 data-i18n="process.2.t">Continuous capture</h3><p data-i18n="process.2.d">The site is recorded through every milestone, with footage accessible for internal review, reporting, and public-facing updates.</p></article>
+    <article class="step"><div class="dot"><span>IV</span></div><h3 data-i18n="process.3.t">Film delivery</h3><p data-i18n="process.3.d">At key phases or completion, we turn the archive into a polished film ready for sales, presentations, and official documentation.</p></article>
   </div>
 </section>
 
-<!-- CLIENTS -->
 <section id="clients">
-  <div class="clients-inner">
-    <div class="clients-left">
-      <div class="section-label">Sa kime radimo / Who We Work With</div>
-      <h2 class="clients-heading">Za ljude koji grade.</h2>
-      <div class="clients-heading-sr">Built for the people who build.</div>
-      <p class="clients-p">Naši klijenti su investitori, izvođači i vlasnici projekata koji razumeju da vizuelni dokaz ima komercijalnu vrednost — a kupci, finansijeri i investitori moraju da vide napredak, ne samo obećanja.</p>
-      <p class="clients-p sr">Our clients are developers, contractors, and project owners who understand that visual evidence is commercial leverage.</p>
+  <div class="clients-grid">
+    <div>
+      <div class="section-label" data-i18n="clients.label">Who we work with</div>
+      <h2 class="section-title" data-i18n="clients.title">Built for people who build.</h2>
+      <p class="subtitle" data-i18n="clients.note">Commercial value for projects that need visible progress.</p>
+      <p class="section-copy" data-i18n="clients.copy">Our clients are developers, contractors, infrastructure teams, and project owners who need credible visual reporting for buyers, lenders, partners, and stakeholders.</p>
     </div>
-    <div class="client-types">
-      <div class="client-type">
-        <div class="client-type-icon">🏗</div>
-        <div>
-          <div class="client-type-title">Stambeni investitori</div>
-          <div class="client-type-title-sr">Mass Residential Developers</div>
-          <p class="client-type-desc">Prodaja u izgradnji zavisi od poverenja kupaca. Naši filmovi demonstriraju brzinu i kvalitet gradnje, direktno podržavaju pretprodaju i smanjuju anksioznost kupaca.</p>
-        </div>
-      </div>
-      <div class="client-type">
-        <div class="client-type-icon">🏛</div>
-        <div>
-          <div class="client-type-title">Infrastrukturni i javni projekti</div>
-          <div class="client-type-title-sr">Infrastructure &amp; Public Projects</div>
-          <p class="client-type-desc">Elektrane, prečistači, saobraćajni čvorovi — veliki javni projekti zahtevaju formalnu vizuelnu dokumentaciju napretka za izveštavanje, usaglašenost i javnu komunikaciju.</p>
-        </div>
-      </div>
-      <div class="client-type">
-        <div class="client-type-icon">🌐</div>
-        <div>
-          <div class="client-type-title">Strani investitori i finansijeri</div>
-          <div class="client-type-title-sr">International Investors &amp; Lenders</div>
-          <p class="client-type-desc">Strani kapital zahteva strukturisano izveštavanje o napretku. Mesečni video izveštaji po prekretnicama pružaju dokumentaciju koju finansijeri i inostrani suinvestitori traže.</p>
-        </div>
-      </div>
-      <div class="client-type">
-        <div class="client-type-icon">🏢</div>
-        <div>
-          <div class="client-type-title">Generalni izvođači</div>
-          <div class="client-type-title-sr">General Contractors</div>
-          <p class="client-type-desc">Zaštitite sebe stalnim vizuelnim zapisom. Dokumentujte tačno šta je izgrađeno, kada i kako — neprocenjivo za sporove, primopredaju i buduće tendere.</p>
-        </div>
-      </div>
+    <div class="clients-list">
+      <article class="client"><div class="client-icon">R1</div><div><h3 data-i18n="clients.0.t">Residential developers</h3><p data-i18n="clients.0.d">Use long-term timelapse and finished films to support pre-sales, reassure buyers, and show that the build is moving on schedule.</p></div></article>
+      <article class="client"><div class="client-icon">I2</div><div><h3 data-i18n="clients.1.t">Infrastructure and public projects</h3><p data-i18n="clients.1.d">Create structured visual documentation for reporting, compliance, tender communication, and public accountability.</p></div></article>
+      <article class="client"><div class="client-icon">G3</div><div><h3 data-i18n="clients.2.t">International investors and lenders</h3><p data-i18n="clients.2.d">Deliver milestone-based visual reporting that foreign capital providers and remote stakeholders can trust.</p></div></article>
+      <article class="client"><div class="client-icon">C4</div><div><h3 data-i18n="clients.3.t">General contractors</h3><p data-i18n="clients.3.d">Maintain a continuous visual record for disputes, handovers, internal review, and future business development.</p></div></article>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT DETAIL -->
-<section class="product">
-  <div class="product-inner">
-    <div class="section-label">Kompletan paket / The Full Package</div>
-    <h2 class="product-heading">Sve u jednoj saradnji.</h2>
-    <div class="product-heading-sr">Everything in one engagement.</div>
-
+<section>
+  <div class="wrap">
+    <div class="section-label" data-i18n="product.label">The full package</div>
+    <h2 class="section-title" data-i18n="product.title">Everything in one engagement.</h2>
+    <p class="subtitle" style="margin-bottom:40px" data-i18n="product.note">Hardware, monitoring, and polished delivery under one roof.</p>
     <div class="product-grid">
-      <div class="product-item">
-        <div class="product-item-title">Oprema</div>
-        <div class="product-item-title-sr">Hardware</div>
-        <p class="product-item-desc">24MP industrijska tajmlaps kamera. 6K panoramsko snimanje. 2TB SSD. Solarno + baterijsko napajanje. Radi od −50°C do +60°C. 3G/4G/5G, LTE, Ethernet, Wi-Fi, Satelit.</p>
-      </div>
-      <div class="product-item">
-        <div class="product-item-title">Monitoring uživo</div>
-        <div class="product-item-title-sr">Live Monitoring</div>
-        <p class="product-item-desc">Mobilna aplikacija za sve zainteresovane strane. Video arhiva sa vremenskom linijom. Widget za sajt jednim klikom. CMS integracija. Opcija 360° monitoringa.</p>
-      </div>
-      <div class="product-item">
-        <div class="product-item-title">Filmska produkcija</div>
-        <div class="product-item-title-sr">Film Production</div>
-        <p class="product-item-desc">Montiran tajmlaps. Snimanje sa terena. Aero snimci dronom. Profesionalni titlovi, infografike, 3D vizualizacije. Muzika i naracija. Brendiran, spreman za objavu.</p>
-      </div>
+      <article class="product-item"><h3 data-i18n="product.0.t">Hardware</h3><p data-i18n="product.0.d">Industrial timelapse camera, long-term outdoor installation, solar and battery options, and remote connectivity for demanding sites.</p></article>
+      <article class="product-item"><h3 data-i18n="product.1.t">Live monitoring</h3><p data-i18n="product.1.d">Remote dashboard, archive access, optional live widget, and fast sharing across project, sales, and management teams.</p></article>
+      <article class="product-item"><h3 data-i18n="product.2.t">Film production</h3><p data-i18n="product.2.d">Edited timelapse sequences, ground footage, drone shots, subtitles, graphics, and brand-ready output for publication.</p></article>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta">
   <div class="cta-inner">
-    <h2 class="cta-heading">Dokumentujte<br/><em>ono što gradite.</em></h2>
-    <div class="cta-heading-sr">Spremni ste da dokumentujete ono što gradite?</div>
-    <p class="cta-sub">Recite nam o svom projektu. Mi se brinemo o svemu — od procene lokacije do gotovog filma.</p>
-    <p class="cta-sub sr">Tell us about your project. We'll handle everything from site assessment to the final film.</p>
-    <div class="cta-buttons">
-      <a href="#contact" class="btn-primary">Pišite nam</a>
-      <a href="#services" class="btn-secondary">Naše usluge</a>
+    <h2 class="cta-title" data-i18n-html="cta.title">Document what you <em>build</em>.</h2>
+    <p class="subtitle" data-i18n="cta.note">Ready to turn construction progress into a business asset?</p>
+    <p class="cta-copy" data-i18n="cta.copy">Tell us about your project. We handle the setup, capture, and final delivery so your team gets clear visual proof without extra operational burden.</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-primary" data-i18n="cta.primary">Write to us</a>
+      <a href="#services" class="btn-secondary" data-i18n="cta.secondary">View services</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="contact-inner">
-    <div class="contact-info">
-      <div class="contact-label">Contact / Kontakt</div>
-      <h3 class="contact-heading">Razgovarajmo o vašem projektu.</h3>
-      <div class="contact-heading-sr">Let's talk about your project.</div>
-
-      <p class="contact-line">Radimo u Srbiji i celom Balkanskom regionu. Inicijalni razgovor je uvek besplatan.</p>
-      <br/>
-      <p class="contact-line"><strong style="color:var(--white)">Email:</strong> <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6cfd9c3c4d4c4d7d8d298d5d9db"><span class="__cf_email__" data-cfemail="3d55585151527d4452484f5f4f5c5359135e5250">[email&#160;protected]</span></a></p>
-      <p class="contact-line"><strong style="color:var(--white)">Phone:</strong> <a href="tel:+381000000000">+381 00 000 0000</a></p>
-      <p class="contact-line"><strong style="color:var(--white)">Location:</strong> Belgrade &amp; Novi Sad, Serbia</p>
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="contact-label" data-i18n="contact.label">Contact</div>
+      <h2 class="contact-title" data-i18n="contact.title">Let's talk about your project.</h2>
+      <p class="subtitle" data-i18n="contact.note">Initial consultation is always free.</p>
+      <p class="contact-copy" data-i18n="contact.copy">We work with projects across Serbia, the Balkans, and international teams that need reliable long-term construction coverage.</p>
+      <p class="contact-line"><strong data-i18n="contact.email">Email:</strong> <a href="mailto:hello@sitecam24.com">hello@sitecam24.com</a></p>
+      <p class="contact-line"><strong data-i18n="contact.phone">Phone:</strong> <a href="tel:+381000000000">+381 00 000 0000</a></p>
+      <p class="contact-line"><strong data-i18n="contact.locationLabel">Location:</strong> <span data-i18n="contact.location">Belgrade and Novi Sad, Serbia</span></p>
     </div>
-    <div class="contact-form">
-      <div class="form-group">
-        <label>Vaše ime / Your name</label>
-        <input type="text" placeholder="Marko Nikolić"/>
-      </div>
-      <div class="form-group">
-        <label>Kompanija / Company</label>
-        <input type="text" placeholder="ABC Invest d.o.o."/>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="marko@company.rs"/>
-      </div>
-      <div class="form-group">
-        <label>O vašem projektu / About your project</label>
-        <textarea rows="4" placeholder="Veličina projekta, lokacija, rokovi..."></textarea>
-      </div>
-      <button class="form-submit">Pošalji poruku / Send message</button>
+    <div>
+      <div class="field"><label for="name" data-i18n="form.name">Your name</label><input id="name" type="text" data-i18n-placeholder="form.namePh" placeholder="John Smith" /></div>
+      <div class="field"><label for="company" data-i18n="form.company">Company</label><input id="company" type="text" data-i18n-placeholder="form.companyPh" placeholder="Atlas Development" /></div>
+      <div class="field"><label for="email" data-i18n="form.email">Email</label><input id="email" type="email" data-i18n-placeholder="form.emailPh" placeholder="john@company.com" /></div>
+      <div class="field"><label for="project" data-i18n="form.project">About your project</label><textarea id="project" rows="4" data-i18n-placeholder="form.projectPh" placeholder="Project size, location, timeline..."></textarea></div>
+      <button class="submit" type="button" data-i18n="form.submit">Send message</button>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">[ <span>BRAND</span> ]</a>
-  <div class="footer-copy">© 2025 [BRAND]. Sva prava zadržana.</div>
+  <a href="#hero" class="footer-logo">[ <span>SiteCam</span> 24 ]</a>
+  <div class="footer-copy" data-i18n="footer.copy">© 2026 SiteCam 24. All rights reserved.</div>
   <div class="footer-links">
-    <a href="#services">Usluge</a>
-    <a href="#how">Proces</a>
-    <a href="#clients">Klijenti</a>
-    <a href="#contact">Kontakt</a>
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#process" data-i18n="nav.process">Process</a>
+    <a href="#clients" data-i18n="nav.clients">Clients</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </footer>
 
+<script>
+const i18n = {
+  en: {
+    pageTitle: "SiteCam 24 - Construction Timelapse",
+    "nav.services": "Services", "nav.process": "Process", "nav.clients": "Clients", "nav.contact": "Contact", "nav.cta": "Write to us",
+    "hero.eyebrow": "Construction timelapse and film production",
+    "hero.title": "We film the <em>story</em> of your build.",
+    "hero.subtitle": "Long-term visual proof for developers, contractors, and project owners.",
+    "hero.copy": "From first excavation to final handover: industrial cameras on site, a production team on call, and a finished film that helps sell the next phase before the concrete is dry.",
+    "hero.stat1": "Continuous capture", "hero.stat2": "Panoramic resolution", "hero.stat3": "Optional site coverage",
+    "showreel.label": "Showreel", "showreel.title": "Progress becomes a <em>sales asset</em>.", "showreel.copy": "A live construction archive transformed into a publishable film.",
+    "manifesto.title": "Buyers do not buy blueprints. They buy <em>proof</em>.",
+    "manifesto.note": "Strong visual evidence lowers buyer anxiety and supports pre-sales month after month.",
+    "manifesto.p1": "Large residential and infrastructure projects are judged long before completion. Investors, buyers, lenders, and public stakeholders all want to see momentum, quality, and accountability in real time.",
+    "manifesto.p2": "We combine industrial timelapse hardware, drone coverage, and cinematic post-production into one service that works as documentation, reporting, and marketing at once.",
+    "services.label": "Services",
+    "services.0.t": "Timelapse camera installation", "services.0.d": "We install industrial-grade cameras directly on site: weatherproof, solar-powered, remotely accessible, and built for long-term autonomous capture.",
+    "services.1.t": "Finished cinematic film", "services.1.d": "Raw timelapse is only the beginning. We deliver edited films with site footage, drone sequences, music, graphics, subtitles, and brand-ready finishing.",
+    "services.2.t": "Drone and aerial coverage", "services.2.d": "Dynamic aerial views, panoramic site overviews, inspection support, and photogrammetry-ready capture for technical and commercial use.",
+    "services.3.t": "Live monitoring and web widget", "services.3.d": "A single dashboard for your cameras, project archive, and optional embeddable live feed for your website, sales office, or investor updates.",
+    "process.label": "How it works", "process.title": "Simple process. <br />Exceptional result.", "process.copy": "One team from assessment to delivery.",
+    "process.0.t": "Site assessment", "process.0.d": "We evaluate camera positions, power options, connectivity, security, and the visual goals of your project.",
+    "process.1.t": "Hardware installation", "process.1.d": "The equipment is mounted, calibrated, and connected to remote monitoring so capture starts immediately.",
+    "process.2.t": "Continuous capture", "process.2.d": "The site is recorded through every milestone, with footage accessible for internal review, reporting, and public-facing updates.",
+    "process.3.t": "Film delivery", "process.3.d": "At key phases or completion, we turn the archive into a polished film ready for sales, presentations, and official documentation.",
+    "clients.label": "Who we work with", "clients.title": "Built for people who build.", "clients.note": "Commercial value for projects that need visible progress.",
+    "clients.copy": "Our clients are developers, contractors, infrastructure teams, and project owners who need credible visual reporting for buyers, lenders, partners, and stakeholders.",
+    "clients.0.t": "Residential developers", "clients.0.d": "Use long-term timelapse and finished films to support pre-sales, reassure buyers, and show that the build is moving on schedule.",
+    "clients.1.t": "Infrastructure and public projects", "clients.1.d": "Create structured visual documentation for reporting, compliance, tender communication, and public accountability.",
+    "clients.2.t": "International investors and lenders", "clients.2.d": "Deliver milestone-based visual reporting that foreign capital providers and remote stakeholders can trust.",
+    "clients.3.t": "General contractors", "clients.3.d": "Maintain a continuous visual record for disputes, handovers, internal review, and future business development.",
+    "product.label": "The full package", "product.title": "Everything in one engagement.", "product.note": "Hardware, monitoring, and polished delivery under one roof.",
+    "product.0.t": "Hardware", "product.0.d": "Industrial timelapse camera, long-term outdoor installation, solar and battery options, and remote connectivity for demanding sites.",
+    "product.1.t": "Live monitoring", "product.1.d": "Remote dashboard, archive access, optional live widget, and fast sharing across project, sales, and management teams.",
+    "product.2.t": "Film production", "product.2.d": "Edited timelapse sequences, ground footage, drone shots, subtitles, graphics, and brand-ready output for publication.",
+    "cta.title": "Document what you <em>build</em>.", "cta.note": "Ready to turn construction progress into a business asset?",
+    "cta.copy": "Tell us about your project. We handle the setup, capture, and final delivery so your team gets clear visual proof without extra operational burden.",
+    "cta.primary": "Write to us", "cta.secondary": "View services",
+    "contact.label": "Contact", "contact.title": "Let's talk about your project.", "contact.note": "Initial consultation is always free.",
+    "contact.copy": "We work with projects across Serbia, the Balkans, and international teams that need reliable long-term construction coverage.",
+    "contact.email": "Email:", "contact.phone": "Phone:", "contact.locationLabel": "Location:", "contact.location": "Belgrade and Novi Sad, Serbia",
+    "form.name": "Your name", "form.namePh": "John Smith", "form.company": "Company", "form.companyPh": "Atlas Development",
+    "form.email": "Email", "form.emailPh": "john@company.com", "form.project": "About your project", "form.projectPh": "Project size, location, timeline...",
+    "form.submit": "Send message", "footer.copy": "© 2026 SiteCam 24. All rights reserved."
+  },
+  sr: {
+    pageTitle: "SiteCam 24 - Tajmlaps i filmska produkcija gradnje",
+    "nav.services": "Usluge", "nav.process": "Proces", "nav.clients": "Klijenti", "nav.contact": "Kontakt", "nav.cta": "Pišite nam",
+    "hero.eyebrow": "Tajmlaps i filmska produkcija gradnje",
+    "hero.title": "Snimamo <em>priču</em> vaše gradnje.",
+    "hero.subtitle": "Dugoročni vizuelni dokaz za investitore, izvođače i vlasnike projekata.",
+    "hero.copy": "Od prvog iskopa do primopredaje: industrijske kamere na gradilištu, produkcijski tim na raspolaganju i gotov film koji pomaže da prodate sledeću fazu pre nego što se beton osuši.",
+    "hero.stat1": "Neprekidno snimanje", "hero.stat2": "Panoramska rezolucija", "hero.stat3": "Opcioni pregled lokacije",
+    "showreel.label": "Showreel", "showreel.title": "Napredak postaje <em>prodajni alat</em>.", "showreel.copy": "Živa arhiva gradnje pretvorena u film spreman za objavu.",
+    "manifesto.title": "Kupci ne kupuju nacrte. Kupuju <em>dokaz</em>.",
+    "manifesto.note": "Jak vizuelni dokaz smanjuje neizvesnost kupaca i podržava pretprodaju iz meseca u mesec.",
+    "manifesto.p1": "Veliki stambeni i infrastrukturni projekti ocenjuju se mnogo pre završetka. Investitori, kupci, finansijeri i javnost žele da vide tempo, kvalitet i odgovornost u realnom vremenu.",
+    "manifesto.p2": "Spajamo industrijski tajmlaps hardver, dron snimanje i filmsku postprodukciju u jednu uslugu koja istovremeno služi kao dokumentacija, izveštavanje i marketing.",
+    "services.label": "Usluge",
+    "services.0.t": "Instalacija tajmlaps kamere", "services.0.d": "Postavljamo industrijske kamere direktno na lokaciji: otporne na vremenske uslove, napajane solarnim sistemom, dostupne na daljinu i spremne za dugotrajan autonoman rad.",
+    "services.1.t": "Gotov filmski proizvod", "services.1.d": "Sirovi tajmlaps je samo početak. Isporučujemo montiran film sa snimcima sa terena, dron sekvencama, muzikom, grafikom, titlovima i završnom obradom spremnom za brend.",
+    "services.2.t": "Dron i aero snimanje", "services.2.d": "Dinamični kadrovi iz vazduha, panoramski pregledi gradilišta, podrška za inspekciju i snimanje spremno za tehničku i komercijalnu upotrebu.",
+    "services.3.t": "Live monitoring i web widget", "services.3.d": "Jedna kontrolna tabla za sve kamere, arhivu projekta i opcioni live prikaz koji možete ugraditi na sajt, u prodajni salon ili investorski izveštaj.",
+    "process.label": "Kako funkcioniše", "process.title": "Jednostavan proces. <br />Izuzetan rezultat.", "process.copy": "Jedan tim od procene do isporuke.",
+    "process.0.t": "Procena lokacije", "process.0.d": "Analiziramo pozicije kamera, napajanje, konekciju, bezbednost i vizuelne ciljeve vašeg projekta.",
+    "process.1.t": "Instalacija opreme", "process.1.d": "Oprema se montira, kalibriše i povezuje na daljinski nadzor kako bi snimanje počelo odmah.",
+    "process.2.t": "Neprekidno snimanje", "process.2.d": "Lokacija se beleži kroz sve faze, a materijal je dostupan za internu proveru, izveštavanje i javne objave.",
+    "process.3.t": "Filmska isporuka", "process.3.d": "U ključnim fazama ili po završetku, arhivu pretvaramo u gotov film spreman za prodaju, prezentacije i zvaničnu dokumentaciju.",
+    "clients.label": "Sa kime radimo", "clients.title": "Stvoreno za ljude koji grade.", "clients.note": "Komercijalna vrednost za projekte kojima je potreban vidljiv napredak.",
+    "clients.copy": "Naši klijenti su investitori, izvođači, infrastrukturni timovi i vlasnici projekata kojima je potreban kredibilan vizuelni izveštaj za kupce, finansijere, partnere i druge zainteresovane strane.",
+    "clients.0.t": "Stambeni investitori", "clients.0.d": "Koriste dugoročni tajmlaps i završne filmove da podrže pretprodaju, umire kupce i pokažu da gradnja napreduje po planu.",
+    "clients.1.t": "Infrastrukturni i javni projekti", "clients.1.d": "Dobijaju strukturisanu vizuelnu dokumentaciju za izveštavanje, usklađenost, tendersku komunikaciju i javnu odgovornost.",
+    "clients.2.t": "Strani investitori i finansijeri", "clients.2.d": "Dobijaju izveštavanje po prekretnicama kojem mogu da veruju i kada nisu fizički prisutni na lokaciji.",
+    "clients.3.t": "Generalni izvođači", "clients.3.d": "Održavaju neprekidan vizuelni zapis za sporove, primopredaju, internu kontrolu i budući poslovni razvoj.",
+    "product.label": "Kompletan paket", "product.title": "Sve u jednoj saradnji.", "product.note": "Hardver, monitoring i završna isporuka pod jednim krovom.",
+    "product.0.t": "Hardver", "product.0.d": "Industrijska tajmlaps kamera, dugoročna spoljašnja instalacija, solarne i baterijske opcije i daljinska konekcija za zahtevne lokacije.",
+    "product.1.t": "Live monitoring", "product.1.d": "Udaljena kontrolna tabla, pristup arhivi, opcioni live widget i brzo deljenje sa projektnim, prodajnim i menadžment timovima.",
+    "product.2.t": "Filmska produkcija", "product.2.d": "Montirane tajmlaps sekvence, terenski kadrovi, dron snimci, titlovi, grafika i izlaz spreman za objavu.",
+    "cta.title": "Dokumentujte ono što <em>gradite</em>.", "cta.note": "Spremni da napredak gradnje pretvorite u poslovni alat?",
+    "cta.copy": "Recite nam nešto o svom projektu. Mi preuzimamo postavljanje, snimanje i završnu isporuku kako bi vaš tim dobio jasan vizuelni dokaz bez dodatnog operativnog opterećenja.",
+    "cta.primary": "Pišite nam", "cta.secondary": "Pogledajte usluge",
+    "contact.label": "Kontakt", "contact.title": "Hajde da pričamo o vašem projektu.", "contact.note": "Inicijalne konsultacije su uvek besplatne.",
+    "contact.copy": "Radimo sa projektima širom Srbije, Balkana i sa međunarodnim timovima kojima je potrebno pouzdano dugoročno praćenje gradnje.",
+    "contact.email": "Email:", "contact.phone": "Telefon:", "contact.locationLabel": "Lokacija:", "contact.location": "Beograd i Novi Sad, Srbija",
+    "form.name": "Vaše ime", "form.namePh": "Marko Nikolić", "form.company": "Kompanija", "form.companyPh": "Atlas Development",
+    "form.email": "Email", "form.emailPh": "marko@company.rs", "form.project": "O vašem projektu", "form.projectPh": "Veličina projekta, lokacija, rokovi...",
+    "form.submit": "Pošalji poruku", "footer.copy": "© 2026 SiteCam 24. Sva prava zadržana."
+  },
+  uz: {
+    pageTitle: "SiteCam 24 - Qurilish timelapse xizmati",
+    "nav.services": "Xizmatlar", "nav.process": "Jarayon", "nav.clients": "Mijozlar", "nav.contact": "Aloqa", "nav.cta": "Yozing",
+    "hero.eyebrow": "Qurilish timelapse va film ishlab chiqarish",
+    "hero.title": "Qurilishingiz <em>hikoyasi</em>ni suratga olamiz.",
+    "hero.subtitle": "Developerlar, pudratchilar va loyiha egalari uchun uzoq muddatli vizual isbot.",
+    "hero.copy": "Birinchi qazishdan yakuniy topshiruvgacha: maydondagi sanoat kameralar, har doim tayyor ijodiy jamoa va keyingi bosqichni sotishga yordam beradigan tayyor film.",
+    "hero.stat1": "24/7 yozib borish", "hero.stat2": "Panoramik aniqlik", "hero.stat3": "Ixtiyoriy maydon qamrovi",
+    "showreel.label": "Showreel", "showreel.title": "Jarayon <em>sotuv aktivi</em>ga aylanadi.", "showreel.copy": "Jonli qurilish arxivi e'lon qilishga tayyor filmga aylantiriladi.",
+    "manifesto.title": "Xaridorlar chizmalarni sotib olmaydi. Ular <em>isbot</em> sotib oladi.",
+    "manifesto.note": "Kuchli vizual isbot xaridor xavotirini kamaytiradi va oldindan sotuvni qo'llab-quvvatlaydi.",
+    "manifesto.p1": "Yirik turar joy va infratuzilma loyihalari tugashidan ancha oldin baholanadi. Investorlar, xaridorlar va kreditorlar real vaqt rejimida sur'at va sifatni ko'rishni xohlaydi.",
+    "manifesto.p2": "Biz sanoat timelapse uskunalari, dron suratga olish va post-prodakshnni bitta xizmatga birlashtiramiz. Natija hujjatlashtirish, hisobot va marketing uchun birdek ishlaydi.",
+    "services.label": "Xizmatlar",
+    "services.0.t": "Timelapse kamera o'rnatish", "services.0.d": "Maydonda sanoat darajasidagi kameralarni o'rnatamiz: ob-havoga chidamli, quyosh energiyasi bilan ishlovchi va uzoq muddatli yozuvga tayyor.",
+    "services.1.t": "Tayyor film mahsuloti", "services.1.d": "Xom timelapse faqat boshlanishi. Biz maydon kadrlari, dron sahnalari, musiqa, grafika va subtitrlar bilan montaj qilingan filmni topshiramiz.",
+    "services.2.t": "Dron va havo tasviri", "services.2.d": "Dinamik havo kadrlari, panoramik ko'rinishlar, inspeksiya uchun yordam va texnik hamda tijoriy foydalanishga tayyor material.",
+    "services.3.t": "Jonli monitoring va web widget", "services.3.d": "Barcha kameralar uchun bitta panel, loyiha arxivi va saytingiz yoki investor hisobotingizga joylash mumkin bo'lgan jonli ko'rinish.",
+    "process.label": "Qanday ishlaydi", "process.title": "Oddiy jarayon. <br />Kuchli natija.", "process.copy": "Baholashdan topshiruvgacha bitta jamoa.",
+    "process.0.t": "Maydonni baholash", "process.0.d": "Kamera nuqtalari, quvvat, aloqa, xavfsizlik va loyihangizning vizual maqsadlarini tahlil qilamiz.",
+    "process.1.t": "Uskunani o'rnatish", "process.1.d": "Uskunalar o'rnatiladi, kalibrlanadi va masofaviy monitoringga ulanadi, shuning uchun yozuv darhol boshlanadi.",
+    "process.2.t": "Doimiy yozib borish", "process.2.d": "Maydon barcha bosqichlar davomida yozib boriladi va material ichki nazorat hamda hisobot uchun mavjud bo'ladi.",
+    "process.3.t": "Film topshirish", "process.3.d": "Muhim bosqichlarda yoki loyiha yakunida arxivni sotuv va taqdimotlar uchun tayyor filmga aylantiramiz.",
+    "clients.label": "Kimlar bilan ishlaymiz", "clients.title": "Quradiganlar uchun yaratilgan.", "clients.note": "Ko'rinadigan progress kerak bo'lgan loyihalar uchun tijoriy qiymat.",
+    "clients.copy": "Mijozlarimiz developerlar, pudratchilar, infratuzilma jamoalari va ishonchli vizual hisobotga muhtoj loyiha egalari.",
+    "clients.0.t": "Turar joy developerlari", "clients.0.d": "Oldindan sotuvni qo'llab-quvvatlash, xaridorlarni tinchlantirish va ishlar reja bo'yicha ketayotganini ko'rsatish uchun foydalanadi.",
+    "clients.1.t": "Infratuzilma va davlat loyihalari", "clients.1.d": "Hisobot, muvofiqlik va jamoatchilik oldidagi hisobdorlik uchun tartibli vizual hujjatlashtirish yaratadi.",
+    "clients.2.t": "Xalqaro investorlar va kreditorlar", "clients.2.d": "Masofadagi manfaatdor tomonlar ishonishi mumkin bo'lgan bosqichma-bosqich vizual hisobotni oladi.",
+    "clients.3.t": "Bosh pudratchilar", "clients.3.d": "Nizolar, topshiruv va ichki nazorat uchun uzluksiz vizual yozuvni saqlab boradi.",
+    "product.label": "To'liq paket", "product.title": "Hammasi bitta hamkorlikda.", "product.note": "Uskuna, monitoring va tayyor topshiruv bitta tizimda.",
+    "product.0.t": "Uskuna", "product.0.d": "Sanoat timelapse kamerasi, uzoq muddatli tashqi o'rnatish va masofaviy aloqa.",
+    "product.1.t": "Jonli monitoring", "product.1.d": "Masofaviy panel, arxivga kirish, ixtiyoriy live widget va tez ulashish.",
+    "product.2.t": "Film ishlab chiqarish", "product.2.d": "Montaj qilingan timelapse, yer usti kadrlari, dron tasvirlari va e'lon qilishga tayyor yakuniy material.",
+    "cta.title": "Qurayotgan narsangizni <em>hujjatlang</em>.", "cta.note": "Qurilish jarayonini biznes aktiviga aylantirishga tayyormisiz?",
+    "cta.copy": "Loyihangiz haqida yozing. Biz sozlash, yozib borish va yakuniy topshiruvni o'z zimmamizga olamiz.",
+    "cta.primary": "Yozing", "cta.secondary": "Xizmatlarni ko'rish",
+    "contact.label": "Aloqa", "contact.title": "Loyihangiz haqida gaplashaylik.", "contact.note": "Dastlabki maslahat bepul.",
+    "contact.copy": "Biz Serbiya, Bolqon va xalqaro jamoalar bilan ishlaymiz.",
+    "contact.email": "Email:", "contact.phone": "Telefon:", "contact.locationLabel": "Joylashuv:", "contact.location": "Belgrad va Novi Sad, Serbiya",
+    "form.name": "Ismingiz", "form.namePh": "Aziz Karimov", "form.company": "Kompaniya", "form.companyPh": "Atlas Development",
+    "form.email": "Email", "form.emailPh": "aziz@company.uz", "form.project": "Loyihangiz haqida", "form.projectPh": "Loyiha hajmi, lokatsiya, muddatlar...",
+    "form.submit": "Xabar yuborish", "footer.copy": "© 2026 SiteCam 24. Barcha huquqlar himoyalangan."
+  },
+  ru: {
+    pageTitle: "SiteCam 24 - Таймлапс строительства",
+    "nav.services": "Услуги", "nav.process": "Процесс", "nav.clients": "Клиенты", "nav.contact": "Контакты", "nav.cta": "Написать нам",
+    "hero.eyebrow": "Таймлапс и видеопродакшн строительства",
+    "hero.title": "Мы снимаем <em>историю</em> вашей стройки.",
+    "hero.subtitle": "Долгосрочное визуальное подтверждение для девелоперов, подрядчиков и владельцев проектов.",
+    "hero.copy": "От первого котлована до финальной сдачи: индустриальные камеры на объекте, продакшн-команда под рукой и готовый фильм, который помогает продавать следующую очередь еще до завершения текущей.",
+    "hero.stat1": "Непрерывная съемка", "hero.stat2": "Панорамное разрешение", "hero.stat3": "Опциональный обзор площадки",
+    "showreel.label": "Шоурил", "showreel.title": "Ход строительства становится <em>активом для продаж</em>.", "showreel.copy": "Живой архив стройки, превращенный в фильм для публикации.",
+    "manifesto.title": "Покупатели не покупают чертежи. Они покупают <em>доказательство</em>.",
+    "manifesto.note": "Сильное визуальное подтверждение снижает тревожность покупателей и поддерживает продажи на стадии строительства.",
+    "manifesto.p1": "Крупные жилые и инфраструктурные проекты оценивают задолго до завершения. Инвесторы, покупатели и кредиторы хотят видеть темп, качество и ответственность в реальном времени.",
+    "manifesto.p2": "Мы объединяем индустриальный таймлапс, съемку с дрона и постпродакшн в одну услугу, которая одновременно работает как документация, отчетность и маркетинг.",
+    "services.label": "Услуги",
+    "services.0.t": "Установка таймлапс-камер", "services.0.d": "Мы устанавливаем индустриальные камеры прямо на площадке: защищенные от погоды, с солнечным питанием, удаленным доступом и готовностью к долгой автономной работе.",
+    "services.1.t": "Готовый фильм", "services.1.d": "Сырой таймлапс - только начало. Мы сдаем смонтированный фильм с кадрами с площадки, дрон-съемкой, музыкой, графикой и субтитрами.",
+    "services.2.t": "Дрон и аэросъемка", "services.2.d": "Динамичные кадры с воздуха, панорамный обзор площадки, поддержка инспекций и материал для технических и коммерческих задач.",
+    "services.3.t": "Онлайн-мониторинг и web-widget", "services.3.d": "Единая панель для всех камер, архив проекта и встраиваемая живая трансляция для сайта, офиса продаж или отчетов инвесторам.",
+    "process.label": "Как это работает", "process.title": "Простой процесс. <br />Сильный результат.", "process.copy": "Одна команда от оценки площадки до финальной выдачи.",
+    "process.0.t": "Оценка площадки", "process.0.d": "Мы определяем точки установки камер, питание, связь, требования по безопасности и визуальные цели проекта.",
+    "process.1.t": "Монтаж оборудования", "process.1.d": "Оборудование устанавливается, калибруется и подключается к удаленному мониторингу, чтобы запись началась сразу.",
+    "process.2.t": "Непрерывная съемка", "process.2.d": "Объект фиксируется на всех этапах, а материалы доступны для внутреннего контроля, отчетности и внешних коммуникаций.",
+    "process.3.t": "Финальная выдача фильма", "process.3.d": "На ключевых этапах или по завершении мы превращаем архив в готовый фильм для продаж, презентаций и официальной документации.",
+    "clients.label": "С кем мы работаем", "clients.title": "Создано для тех, кто строит.", "clients.note": "Коммерческая ценность для проектов, где прогресс должен быть видимым.",
+    "clients.copy": "Наши клиенты - девелоперы, подрядчики, инфраструктурные команды и владельцы проектов, которым нужна убедительная визуальная отчетность.",
+    "clients.0.t": "Жилые девелоперы", "clients.0.d": "Используют долгосрочный таймлапс и готовые фильмы, чтобы поддерживать продажи и показывать движение стройки по графику.",
+    "clients.1.t": "Инфраструктурные и государственные проекты", "clients.1.d": "Получают структурированную визуальную документацию для отчетности, соответствия требованиям и публичной подотчетности.",
+    "clients.2.t": "Иностранные инвесторы и кредиторы", "clients.2.d": "Получают поэтапную визуальную отчетность, которой можно доверять даже без присутствия на площадке.",
+    "clients.3.t": "Генеральные подрядчики", "clients.3.d": "Сохраняют непрерывную визуальную историю для споров, сдачи этапов и внутреннего контроля.",
+    "product.label": "Полный пакет", "product.title": "Все в одном сотрудничестве.", "product.note": "Оборудование, мониторинг и готовый результат в одной услуге.",
+    "product.0.t": "Оборудование", "product.0.d": "Индустриальная таймлапс-камера, долговременная наружная установка и удаленная связь для сложных площадок.",
+    "product.1.t": "Онлайн-мониторинг", "product.1.d": "Удаленная панель, доступ к архиву, опциональный live widget и быстрое распространение материалов внутри команды.",
+    "product.2.t": "Видеопродакшн", "product.2.d": "Смонтированные таймлапс-сцены, наземная съемка, кадры с дрона, субтитры и графика, готовые к публикации.",
+    "cta.title": "Документируйте то, что <em>строите</em>.", "cta.note": "Готовы превратить ход строительства в бизнес-актив?",
+    "cta.copy": "Расскажите о своем проекте. Мы берем на себя установку, съемку и финальную выдачу.",
+    "cta.primary": "Написать нам", "cta.secondary": "Посмотреть услуги",
+    "contact.label": "Контакты", "contact.title": "Давайте обсудим ваш проект.", "contact.note": "Первичная консультация всегда бесплатна.",
+    "contact.copy": "Мы работаем с проектами по всей Сербии, на Балканах и с международными командами.",
+    "contact.email": "Email:", "contact.phone": "Телефон:", "contact.locationLabel": "Локация:", "contact.location": "Белград и Нови-Сад, Сербия",
+    "form.name": "Ваше имя", "form.namePh": "Иван Петров", "form.company": "Компания", "form.companyPh": "Atlas Development",
+    "form.email": "Email", "form.emailPh": "ivan@company.ru", "form.project": "О вашем проекте", "form.projectPh": "Размер проекта, локация, сроки...",
+    "form.submit": "Отправить сообщение", "footer.copy": "© 2026 SiteCam 24. Все права защищены."
+  }
+};
 
+function applyLanguage(lang) {
+  const dict = i18n[lang] || i18n.en;
+  document.documentElement.lang = lang;
+  document.title = dict.pageTitle;
+  document.querySelectorAll("[data-i18n]").forEach((node) => {
+    const value = dict[node.dataset.i18n];
+    if (typeof value === "string") node.textContent = value;
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach((node) => {
+    const value = dict[node.dataset.i18nHtml];
+    if (typeof value === "string") node.innerHTML = value;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+    const value = dict[node.dataset.i18nPlaceholder];
+    if (typeof value === "string") node.placeholder = value;
+  });
+  document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+    const active = button.dataset.langSwitch === lang;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  try { localStorage.setItem("sitecam-language", lang); } catch (e) {}
+}
+
+document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+  button.addEventListener("click", () => applyLanguage(button.dataset.langSwitch));
+});
+
+let defaultLang = "en";
+try {
+  const saved = localStorage.getItem("sitecam-language");
+  if (saved && i18n[saved]) defaultLang = saved;
+} catch (e) {}
+applyLanguage(defaultLang);
+</script>
 </body>
 </html>
