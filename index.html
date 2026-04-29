@@ -39,8 +39,25 @@
   .hero-copy p,.cta-copy,.contact-line,.contact-copy{font-size:.96rem}
   .hero-stats{display:flex;flex-direction:column;gap:28px;padding-left:44px;border-left:1px solid var(--border)}
   .stat-num{font-family:"Cormorant",serif;font-size:2.2rem;font-weight:600;color:var(--gold);line-height:1}.stat-label{margin-top:6px;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
-  .showreel{padding-top:0}.video{position:relative;width:100%;background:var(--surface);border:1px solid var(--border);overflow:hidden;padding-bottom:56.25%;height:0}
-  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:none;background:#000}
+  .showreel{padding-top:0}.video-poster{position:relative;display:block;width:100%;min-height:560px;background:linear-gradient(rgba(8,8,7,.16),rgba(8,8,7,.38)),url("https://img.youtube.com/vi/-oRigRsLtEs/maxresdefault.jpg") center/cover no-repeat;border:1px solid var(--border);overflow:hidden;text-decoration:none}
+  .video-poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,7,.06) 0%,rgba(8,8,7,.18) 100%)}
+  .services-video{margin-top:26px}
+  .services-player-wrap{position:relative;background:var(--surface);border:1px solid var(--border);overflow:hidden}
+  .services-player{position:relative;padding-bottom:56.25%;height:0}
+  .services-player iframe{position:absolute;inset:0;width:100%;height:100%;border:none;background:#000}
+  .services-player-link{position:absolute;right:16px;top:16px;z-index:2;padding:10px 14px;background:rgba(8,8,7,.62);border:1px solid rgba(240,237,230,.16);color:var(--white);text-decoration:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(8px)}
+  .services-player-link:hover{border-color:var(--gold);color:var(--gold)}
+  .carousel-shell{position:relative;padding:0 58px;margin-top:18px}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:72px;border:1px solid var(--border);background:rgba(17,17,16,.96);color:var(--white);cursor:pointer;z-index:2;transition:.25s}
+  .carousel-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .carousel-btn.prev{left:0}
+  .carousel-btn.next{right:0}
+  .video-carousel{display:flex;gap:18px;overflow:hidden;scroll-behavior:smooth}
+  .video-card{display:block;background:var(--surface);border:1px solid var(--border);text-decoration:none;color:inherit;transition:.25s;overflow:hidden;min-width:280px;flex:0 0 280px;cursor:pointer;padding:0;appearance:none;-webkit-appearance:none}
+  .video-card:hover{transform:translateY(-2px);border-color:var(--gold-dim);background:var(--surface2)}
+  .video-thumb{position:relative;padding-bottom:56.25%;background-size:cover;background-position:center}
+  .video-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(8,8,7,.12),rgba(8,8,7,.42))}
+  .video-meta{display:none}
   .manifesto,.process,.contact{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
   .manifesto-grid,.clients-grid,.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start}
   .section-title{font-size:clamp(2rem,3.5vw,3rem);line-height:1.14;margin-bottom:8px}.section-copy{font-size:.92rem;margin-top:18px}
@@ -67,8 +84,8 @@
   .field input,.field textarea{width:100%;border:1px solid var(--border);background:var(--black);color:var(--white);padding:14px 18px;font:inherit;outline:none;resize:none}.field input:focus,.field textarea:focus{border-color:var(--gold-dim)}
   .field input::placeholder,.field textarea::placeholder{color:var(--muted2)}
   footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:40px 56px;border-top:1px solid var(--border)} .footer-copy{color:var(--muted2);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
-  @media (max-width:1100px){.hero-sub,.manifesto-grid,.clients-grid,.contact-grid{grid-template-columns:1fr;gap:48px}.steps{grid-template-columns:repeat(2,1fr);gap:40px 0}.steps::before,.hero-accent{display:none}}
-  @media (max-width:900px){nav,section,footer{padding-left:22px;padding-right:22px}nav{align-items:flex-start;flex-wrap:wrap;gap:14px}.nav-links{order:3;width:100%;gap:18px;flex-wrap:wrap}.nav-right{width:100%;justify-content:space-between}.cards,.product-grid,.steps{grid-template-columns:1fr}.client{grid-template-columns:40px 1fr}footer,.footer-links{flex-direction:column;text-align:center}}
+  @media (max-width:1100px){.hero-sub,.manifesto-grid,.clients-grid,.contact-grid{grid-template-columns:1fr;gap:48px}.steps{grid-template-columns:repeat(2,1fr);gap:40px 0}.steps::before,.hero-accent{display:none}.video-poster{min-height:460px}}
+  @media (max-width:900px){nav,section,footer{padding-left:22px;padding-right:22px}nav{align-items:flex-start;flex-wrap:wrap;gap:14px}.nav-links{order:3;width:100%;gap:18px;flex-wrap:wrap}.nav-right{width:100%;justify-content:space-between}.cards,.product-grid,.steps{grid-template-columns:1fr}.client{grid-template-columns:40px 1fr}footer,.footer-links{flex-direction:column;text-align:center}.video-poster{min-height:360px}.video-play{width:74px;height:74px}.video-card{min-width:220px;flex-basis:220px}.carousel-shell{padding:0 44px}.carousel-btn{width:32px;height:60px}.services-player-link{top:10px;right:10px;padding:8px 10px;font-size:.66rem}}
 </style>
 </head>
 <body>
@@ -117,9 +134,7 @@
     <div class="section-label" data-i18n="showreel.label">Showreel</div>
     <h2 class="section-title" data-i18n-html="showreel.title">Progress becomes a <em>sales asset</em>.</h2>
     <p class="subtitle" style="margin-bottom:34px" data-i18n="showreel.copy">A live construction archive transformed into a publishable film.</p>
-    <div class="video">
-      <iframe src="https://www.youtube.com/embed/79R8ytu7LgA?autoplay=1&mute=1&rel=0&modestbranding=1&color=white&playsinline=1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-    </div>
+    <a class="video-poster" href="https://www.youtube.com/watch?v=-oRigRsLtEs" target="_blank" rel="noopener noreferrer" aria-label="Open featured video on YouTube"></a>
   </div>
 </section>
 
@@ -144,6 +159,47 @@
       <article class="card"><div class="num">02</div><h3 data-i18n="services.1.t">Finished cinematic film</h3><p data-i18n="services.1.d">Raw timelapse is only the beginning. We deliver edited films with site footage, drone sequences, music, graphics, subtitles, and brand-ready finishing.</p><div class="icon">F2</div></article>
       <article class="card"><div class="num">03</div><h3 data-i18n="services.2.t">Drone and aerial coverage</h3><p data-i18n="services.2.d">Dynamic aerial views, panoramic site overviews, inspection support, and photogrammetry-ready capture for technical and commercial use.</p><div class="icon">A3</div></article>
       <article class="card"><div class="num">04</div><h3 data-i18n="services.3.t">Live monitoring and web widget</h3><p data-i18n="services.3.d">A single dashboard for your cameras, project archive, and optional embeddable live feed for your website, sales office, or investor updates.</p><div class="icon">L4</div></article>
+    </div>
+    <div class="services-video">
+      <div class="services-player-wrap">
+        <a id="services-player-link" class="services-player-link" href="https://www.youtube.com/watch?v=o3Cwd5IVC4Y" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <div class="services-player">
+          <iframe id="services-player-frame" src="about:blank" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+      </div>
+      <div class="carousel-shell">
+        <button class="carousel-btn prev" type="button" aria-label="Previous videos" data-carousel-prev>&lt;</button>
+        <div class="video-carousel" aria-label="Project videos" data-video-carousel>
+      <button class="video-card is-active" type="button" data-video-id="o3Cwd5IVC4Y" data-video-url="https://www.youtube.com/watch?v=o3Cwd5IVC4Y" aria-label="Open project video 1">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/o3Cwd5IVC4Y/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="VesGxxm4Ab4" data-video-url="https://www.youtube.com/watch?v=VesGxxm4Ab4" aria-label="Open project video 2">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/VesGxxm4Ab4/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="v1WRnDTUINg" data-video-url="https://www.youtube.com/watch?v=v1WRnDTUINg" aria-label="Open project video 3">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/v1WRnDTUINg/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="g3etMP4oWxE" data-video-url="https://www.youtube.com/watch?v=g3etMP4oWxE" aria-label="Open project video 4">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/g3etMP4oWxE/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="q92kDnRCvMg" data-video-url="https://www.youtube.com/watch?v=q92kDnRCvMg" aria-label="Open project video 5">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/q92kDnRCvMg/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="4DzqvV0O5RI" data-video-url="https://www.youtube.com/watch?v=4DzqvV0O5RI" aria-label="Open project video 6">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/4DzqvV0O5RI/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="nA0OEKJEhWQ" data-video-url="https://www.youtube.com/watch?v=nA0OEKJEhWQ" aria-label="Open project video 7">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/nA0OEKJEhWQ/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="KeGgXcpMXGk" data-video-url="https://www.youtube.com/watch?v=KeGgXcpMXGk" aria-label="Open project video 8">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/KeGgXcpMXGk/hqdefault.jpg')"></div>
+      </button>
+      <button class="video-card" type="button" data-video-id="9hCpiTRbnMc" data-video-url="https://www.youtube.com/watch?v=9hCpiTRbnMc" aria-label="Open project video 9">
+        <div class="video-thumb" style="background-image:url('https://img.youtube.com/vi/9hCpiTRbnMc/hqdefault.jpg')"></div>
+      </button>
+        </div>
+        <button class="carousel-btn next" type="button" aria-label="Next videos" data-carousel-next>&gt;</button>
+      </div>
     </div>
   </div>
 </section>
@@ -247,15 +303,20 @@ const i18n = {
     "hero.copy": "From first excavation to final handover: industrial cameras on site, a production team on call, and a finished film that helps sell the next phase before the concrete is dry.",
     "hero.stat1": "Continuous capture", "hero.stat2": "Panoramic resolution", "hero.stat3": "Optional site coverage",
     "showreel.label": "Showreel", "showreel.title": "Progress becomes a <em>sales asset</em>.", "showreel.copy": "A live construction archive transformed into a publishable film.",
+    "showreel.featuredKicker": "Featured project", "showreel.featuredTitle": "Long-term urban development timelapse", "showreel.featuredCopy": "This featured film opens on YouTube to avoid embedded-player restrictions and show the project in full quality.",
     "manifesto.title": "Buyers do not buy blueprints. They buy <em>proof</em>.",
     "manifesto.note": "Strong visual evidence lowers buyer anxiety and supports pre-sales month after month.",
     "manifesto.p1": "Large residential and infrastructure projects are judged long before completion. Investors, buyers, lenders, and public stakeholders all want to see momentum, quality, and accountability in real time.",
     "manifesto.p2": "We combine industrial timelapse hardware, drone coverage, and cinematic post-production into one service that works as documentation, reporting, and marketing at once.",
-    "services.label": "Services",
+    "services.label": "Services", "services.mediaNote": "Selected project examples from the channel, matched to the services above.",
     "services.0.t": "Timelapse camera installation", "services.0.d": "We install industrial-grade cameras directly on site: weatherproof, solar-powered, remotely accessible, and built for long-term autonomous capture.",
     "services.1.t": "Finished cinematic film", "services.1.d": "Raw timelapse is only the beginning. We deliver edited films with site footage, drone sequences, music, graphics, subtitles, and brand-ready finishing.",
-    "services.2.t": "Drone and aerial coverage", "services.2.d": "Dynamic aerial views, panoramic site overviews, inspection support, and photogrammetry-ready capture for technical and commercial use.",
-    "services.3.t": "Live monitoring and web widget", "services.3.d": "A single dashboard for your cameras, project archive, and optional embeddable live feed for your website, sales office, or investor updates.",
+    "services.2.t": "Drone and aerial coverage", "services.2.d": "Dynamic aerial views, panoramic site overviews, inspection support, and photogrammetry-ready capture for residential projects, engineering structures, roads, bridges, and tunnels.",
+    "services.3.t": "Live monitoring and web widget", "services.3.d": "A single dashboard for your cameras, project archive, and optional embeddable live feed for your website, sales office, investor updates, or industrial and infrastructure reporting.",
+    "videos.0.t": "Two-year residential build", "videos.0.d": "A clean example of long-term apartment construction coverage for developers and pre-sales teams.",
+    "videos.1.t": "Business center timelapse", "videos.1.d": "Useful for commercial real estate, investor updates, and milestone presentations.",
+    "videos.2.t": "Metro and tunnel works", "videos.2.d": "A strong infrastructure example for tunneling, engineering systems, and technically complex sites.",
+    "videos.3.t": "Industrial plant construction", "videos.3.d": "Illustrates factory and processing-facility documentation for owners, lenders, and EPC teams.",
     "process.label": "How it works", "process.title": "Simple process. <br />Exceptional result.", "process.copy": "One team from assessment to delivery.",
     "process.0.t": "Site assessment", "process.0.d": "We evaluate camera positions, power options, connectivity, security, and the visual goals of your project.",
     "process.1.t": "Hardware installation", "process.1.d": "The equipment is mounted, calibrated, and connected to remote monitoring so capture starts immediately.",
@@ -264,13 +325,13 @@ const i18n = {
     "clients.label": "Who we work with", "clients.title": "Built for people who build.", "clients.note": "Commercial value for projects that need visible progress.",
     "clients.copy": "Our clients are developers, contractors, infrastructure teams, and project owners who need credible visual reporting for buyers, lenders, partners, and stakeholders.",
     "clients.0.t": "Residential developers", "clients.0.d": "Use long-term timelapse and finished films to support pre-sales, reassure buyers, and show that the build is moving on schedule.",
-    "clients.1.t": "Infrastructure and public projects", "clients.1.d": "Create structured visual documentation for reporting, compliance, tender communication, and public accountability.",
+    "clients.1.t": "Infrastructure and public projects", "clients.1.d": "Create structured visual documentation for roads, bridges, tunnels, utilities, and public infrastructure where reporting, compliance, and accountability matter.",
     "clients.2.t": "International investors and lenders", "clients.2.d": "Deliver milestone-based visual reporting that foreign capital providers and remote stakeholders can trust.",
     "clients.3.t": "General contractors", "clients.3.d": "Maintain a continuous visual record for disputes, handovers, internal review, and future business development.",
     "product.label": "The full package", "product.title": "Everything in one engagement.", "product.note": "Hardware, monitoring, and polished delivery under one roof.",
-    "product.0.t": "Hardware", "product.0.d": "Industrial timelapse camera, long-term outdoor installation, solar and battery options, and remote connectivity for demanding sites.",
+    "product.0.t": "Hardware", "product.0.d": "Industrial timelapse camera, long-term outdoor installation, solar and battery options, and remote connectivity for demanding residential, industrial, and infrastructure sites.",
     "product.1.t": "Live monitoring", "product.1.d": "Remote dashboard, archive access, optional live widget, and fast sharing across project, sales, and management teams.",
-    "product.2.t": "Film production", "product.2.d": "Edited timelapse sequences, ground footage, drone shots, subtitles, graphics, and brand-ready output for publication.",
+    "product.2.t": "Film production", "product.2.d": "Edited timelapse sequences, ground footage, drone shots, subtitles, graphics, and brand-ready output for residential builds, factories, and engineering structures.",
     "cta.title": "Document what you <em>build</em>.", "cta.note": "Ready to turn construction progress into a business asset?",
     "cta.copy": "Tell us about your project. We handle the setup, capture, and final delivery so your team gets clear visual proof without extra operational burden.",
     "cta.primary": "Write to us", "cta.secondary": "View services",
@@ -290,15 +351,20 @@ const i18n = {
     "hero.copy": "Od prvog iskopa do primopredaje: industrijske kamere na gradilištu, produkcijski tim na raspolaganju i gotov film koji pomaže da prodate sledeću fazu pre nego što se beton osuši.",
     "hero.stat1": "Neprekidno snimanje", "hero.stat2": "Panoramska rezolucija", "hero.stat3": "Opcioni pregled lokacije",
     "showreel.label": "Showreel", "showreel.title": "Napredak postaje <em>prodajni alat</em>.", "showreel.copy": "Živa arhiva gradnje pretvorena u film spreman za objavu.",
+    "showreel.featuredKicker": "Izdvojeni projekat", "showreel.featuredTitle": "Dugoročni tajmlaps urbanog razvoja", "showreel.featuredCopy": "Ovaj istaknuti film otvara se na YouTube-u kako bismo izbegli ograničenja ugrađenog plejera i prikazali projekat u punom kvalitetu.",
     "manifesto.title": "Kupci ne kupuju nacrte. Kupuju <em>dokaz</em>.",
     "manifesto.note": "Jak vizuelni dokaz smanjuje neizvesnost kupaca i podržava pretprodaju iz meseca u mesec.",
     "manifesto.p1": "Veliki stambeni i infrastrukturni projekti ocenjuju se mnogo pre završetka. Investitori, kupci, finansijeri i javnost žele da vide tempo, kvalitet i odgovornost u realnom vremenu.",
     "manifesto.p2": "Spajamo industrijski tajmlaps hardver, dron snimanje i filmsku postprodukciju u jednu uslugu koja istovremeno služi kao dokumentacija, izveštavanje i marketing.",
-    "services.label": "Usluge",
+    "services.label": "Usluge", "services.mediaNote": "Odabrani primeri sa kanala, povezani sa uslugama iznad.",
     "services.0.t": "Instalacija tajmlaps kamere", "services.0.d": "Postavljamo industrijske kamere direktno na lokaciji: otporne na vremenske uslove, napajane solarnim sistemom, dostupne na daljinu i spremne za dugotrajan autonoman rad.",
     "services.1.t": "Gotov filmski proizvod", "services.1.d": "Sirovi tajmlaps je samo početak. Isporučujemo montiran film sa snimcima sa terena, dron sekvencama, muzikom, grafikom, titlovima i završnom obradom spremnom za brend.",
-    "services.2.t": "Dron i aero snimanje", "services.2.d": "Dinamični kadrovi iz vazduha, panoramski pregledi gradilišta, podrška za inspekciju i snimanje spremno za tehničku i komercijalnu upotrebu.",
-    "services.3.t": "Live monitoring i web widget", "services.3.d": "Jedna kontrolna tabla za sve kamere, arhivu projekta i opcioni live prikaz koji možete ugraditi na sajt, u prodajni salon ili investorski izveštaj.",
+    "services.2.t": "Dron i aero snimanje", "services.2.d": "Dinamični kadrovi iz vazduha, panoramski pregledi gradilišta, podrška za inspekciju i snimanje za stambene projekte, inženjerske konstrukcije, puteve, mostove i tunele.",
+    "services.3.t": "Live monitoring i web widget", "services.3.d": "Jedna kontrolna tabla za sve kamere, arhivu projekta i opcioni live prikaz za sajt, prodajni salon, investorski izveštaj ili industrijsko i infrastrukturno praćenje.",
+    "videos.0.t": "Dvogodišnja stambena gradnja", "videos.0.d": "Jasan primer dugoročnog praćenja stambene izgradnje za investitore i pretprodajne timove.",
+    "videos.1.t": "Tajmlaps poslovnog centra", "videos.1.d": "Koristan za komercijalne nekretnine, izveštaje investitorima i prezentacije po fazama.",
+    "videos.2.t": "Metro i tunelski radovi", "videos.2.d": "Snažan infrastrukturni primer za tunelogradnju, inženjerske sisteme i tehnički složene lokacije.",
+    "videos.3.t": "Izgradnja industrijskog postrojenja", "videos.3.d": "Prikazuje dokumentovanje fabrike i proizvodnog postrojenja za vlasnike, finansijere i EPC timove.",
     "process.label": "Kako funkcioniše", "process.title": "Jednostavan proces. <br />Izuzetan rezultat.", "process.copy": "Jedan tim od procene do isporuke.",
     "process.0.t": "Procena lokacije", "process.0.d": "Analiziramo pozicije kamera, napajanje, konekciju, bezbednost i vizuelne ciljeve vašeg projekta.",
     "process.1.t": "Instalacija opreme", "process.1.d": "Oprema se montira, kalibriše i povezuje na daljinski nadzor kako bi snimanje počelo odmah.",
@@ -307,13 +373,13 @@ const i18n = {
     "clients.label": "Sa kime radimo", "clients.title": "Stvoreno za ljude koji grade.", "clients.note": "Komercijalna vrednost za projekte kojima je potreban vidljiv napredak.",
     "clients.copy": "Naši klijenti su investitori, izvođači, infrastrukturni timovi i vlasnici projekata kojima je potreban kredibilan vizuelni izveštaj za kupce, finansijere, partnere i druge zainteresovane strane.",
     "clients.0.t": "Stambeni investitori", "clients.0.d": "Koriste dugoročni tajmlaps i završne filmove da podrže pretprodaju, umire kupce i pokažu da gradnja napreduje po planu.",
-    "clients.1.t": "Infrastrukturni i javni projekti", "clients.1.d": "Dobijaju strukturisanu vizuelnu dokumentaciju za izveštavanje, usklađenost, tendersku komunikaciju i javnu odgovornost.",
+    "clients.1.t": "Infrastrukturni i javni projekti", "clients.1.d": "Dobijaju strukturisanu vizuelnu dokumentaciju za puteve, mostove, tunele, komunalne sisteme i druge projekte gde su izveštavanje, usklađenost i javna odgovornost ključni.",
     "clients.2.t": "Strani investitori i finansijeri", "clients.2.d": "Dobijaju izveštavanje po prekretnicama kojem mogu da veruju i kada nisu fizički prisutni na lokaciji.",
     "clients.3.t": "Generalni izvođači", "clients.3.d": "Održavaju neprekidan vizuelni zapis za sporove, primopredaju, internu kontrolu i budući poslovni razvoj.",
     "product.label": "Kompletan paket", "product.title": "Sve u jednoj saradnji.", "product.note": "Hardver, monitoring i završna isporuka pod jednim krovom.",
-    "product.0.t": "Hardver", "product.0.d": "Industrijska tajmlaps kamera, dugoročna spoljašnja instalacija, solarne i baterijske opcije i daljinska konekcija za zahtevne lokacije.",
+    "product.0.t": "Hardver", "product.0.d": "Industrijska tajmlaps kamera, dugoročna spoljašnja instalacija, solarne i baterijske opcije i daljinska konekcija za zahtevne stambene, industrijske i infrastrukturne lokacije.",
     "product.1.t": "Live monitoring", "product.1.d": "Udaljena kontrolna tabla, pristup arhivi, opcioni live widget i brzo deljenje sa projektnim, prodajnim i menadžment timovima.",
-    "product.2.t": "Filmska produkcija", "product.2.d": "Montirane tajmlaps sekvence, terenski kadrovi, dron snimci, titlovi, grafika i izlaz spreman za objavu.",
+    "product.2.t": "Filmska produkcija", "product.2.d": "Montirane tajmlaps sekvence, terenski kadrovi, dron snimci, titlovi, grafika i izlaz spreman za objavu za stambene objekte, fabrike i inženjerske konstrukcije.",
     "cta.title": "Dokumentujte ono što <em>gradite</em>.", "cta.note": "Spremni da napredak gradnje pretvorite u poslovni alat?",
     "cta.copy": "Recite nam nešto o svom projektu. Mi preuzimamo postavljanje, snimanje i završnu isporuku kako bi vaš tim dobio jasan vizuelni dokaz bez dodatnog operativnog opterećenja.",
     "cta.primary": "Pišite nam", "cta.secondary": "Pogledajte usluge",
@@ -333,15 +399,20 @@ const i18n = {
     "hero.copy": "Birinchi qazishdan yakuniy topshiruvgacha: maydondagi sanoat kameralar, har doim tayyor ijodiy jamoa va keyingi bosqichni sotishga yordam beradigan tayyor film.",
     "hero.stat1": "24/7 yozib borish", "hero.stat2": "Panoramik aniqlik", "hero.stat3": "Ixtiyoriy maydon qamrovi",
     "showreel.label": "Showreel", "showreel.title": "Jarayon <em>sotuv aktivi</em>ga aylanadi.", "showreel.copy": "Jonli qurilish arxivi e'lon qilishga tayyor filmga aylantiriladi.",
+    "showreel.featuredKicker": "Asosiy loyiha", "showreel.featuredTitle": "Shahar rivoji bo'yicha uzoq muddatli timelapse", "showreel.featuredCopy": "Bu asosiy film YouTube'da ochiladi, shunda ichki pleer cheklovlarisiz loyihani to'liq sifatda ko'rish mumkin bo'ladi.",
     "manifesto.title": "Xaridorlar chizmalarni sotib olmaydi. Ular <em>isbot</em> sotib oladi.",
     "manifesto.note": "Kuchli vizual isbot xaridor xavotirini kamaytiradi va oldindan sotuvni qo'llab-quvvatlaydi.",
     "manifesto.p1": "Yirik turar joy va infratuzilma loyihalari tugashidan ancha oldin baholanadi. Investorlar, xaridorlar va kreditorlar real vaqt rejimida sur'at va sifatni ko'rishni xohlaydi.",
     "manifesto.p2": "Biz sanoat timelapse uskunalari, dron suratga olish va post-prodakshnni bitta xizmatga birlashtiramiz. Natija hujjatlashtirish, hisobot va marketing uchun birdek ishlaydi.",
-    "services.label": "Xizmatlar",
+    "services.label": "Xizmatlar", "services.mediaNote": "Yuqoridagi xizmatlarga mos tanlangan loyiha misollari.",
     "services.0.t": "Timelapse kamera o'rnatish", "services.0.d": "Maydonda sanoat darajasidagi kameralarni o'rnatamiz: ob-havoga chidamli, quyosh energiyasi bilan ishlovchi va uzoq muddatli yozuvga tayyor.",
     "services.1.t": "Tayyor film mahsuloti", "services.1.d": "Xom timelapse faqat boshlanishi. Biz maydon kadrlari, dron sahnalari, musiqa, grafika va subtitrlar bilan montaj qilingan filmni topshiramiz.",
-    "services.2.t": "Dron va havo tasviri", "services.2.d": "Dinamik havo kadrlari, panoramik ko'rinishlar, inspeksiya uchun yordam va texnik hamda tijoriy foydalanishga tayyor material.",
-    "services.3.t": "Jonli monitoring va web widget", "services.3.d": "Barcha kameralar uchun bitta panel, loyiha arxivi va saytingiz yoki investor hisobotingizga joylash mumkin bo'lgan jonli ko'rinish.",
+    "services.2.t": "Dron va havo tasviri", "services.2.d": "Dinamik havo kadrlari, panoramik ko'rinishlar, inspeksiya uchun yordam va turar joy, muhandislik inshootlari, yo'llar, ko'priklar va tunnellar uchun tayyor material.",
+    "services.3.t": "Jonli monitoring va web widget", "services.3.d": "Barcha kameralar uchun bitta panel, loyiha arxivi va sayt, savdo ofisi, investor hisobotlari yoki sanoat hamda infratuzilma kuzatuvi uchun jonli ko'rinish.",
+    "videos.0.t": "Ikki yillik turar joy qurilishi", "videos.0.d": "Developerlar va oldindan sotuv jamoalari uchun uzoq muddatli turar joy qurilishini kuzatishning aniq namunasi.",
+    "videos.1.t": "Biznes markaz timelapse'i", "videos.1.d": "Tijoriy ko'chmas mulk, investor yangilanishlari va bosqichma-bosqich taqdimotlar uchun foydali.",
+    "videos.2.t": "Metro va tunnel ishlari", "videos.2.d": "Tunnel qurilishi, muhandislik tizimlari va texnik jihatdan murakkab maydonlar uchun kuchli infratuzilma namunasi.",
+    "videos.3.t": "Sanoat zavodi qurilishi", "videos.3.d": "Zavod va ishlab chiqarish obyektlarini egalari, kreditorlar va EPC jamoalari uchun hujjatlashtirishni ko'rsatadi.",
     "process.label": "Qanday ishlaydi", "process.title": "Oddiy jarayon. <br />Kuchli natija.", "process.copy": "Baholashdan topshiruvgacha bitta jamoa.",
     "process.0.t": "Maydonni baholash", "process.0.d": "Kamera nuqtalari, quvvat, aloqa, xavfsizlik va loyihangizning vizual maqsadlarini tahlil qilamiz.",
     "process.1.t": "Uskunani o'rnatish", "process.1.d": "Uskunalar o'rnatiladi, kalibrlanadi va masofaviy monitoringga ulanadi, shuning uchun yozuv darhol boshlanadi.",
@@ -350,13 +421,13 @@ const i18n = {
     "clients.label": "Kimlar bilan ishlaymiz", "clients.title": "Quradiganlar uchun yaratilgan.", "clients.note": "Ko'rinadigan progress kerak bo'lgan loyihalar uchun tijoriy qiymat.",
     "clients.copy": "Mijozlarimiz developerlar, pudratchilar, infratuzilma jamoalari va ishonchli vizual hisobotga muhtoj loyiha egalari.",
     "clients.0.t": "Turar joy developerlari", "clients.0.d": "Oldindan sotuvni qo'llab-quvvatlash, xaridorlarni tinchlantirish va ishlar reja bo'yicha ketayotganini ko'rsatish uchun foydalanadi.",
-    "clients.1.t": "Infratuzilma va davlat loyihalari", "clients.1.d": "Hisobot, muvofiqlik va jamoatchilik oldidagi hisobdorlik uchun tartibli vizual hujjatlashtirish yaratadi.",
+    "clients.1.t": "Infratuzilma va davlat loyihalari", "clients.1.d": "Yo'llar, ko'priklar, tunnellar, kommunal tizimlar va hisobot hamda jamoatchilik oldidagi hisobdorlik muhim bo'lgan loyihalar uchun tartibli vizual hujjatlashtirish yaratadi.",
     "clients.2.t": "Xalqaro investorlar va kreditorlar", "clients.2.d": "Masofadagi manfaatdor tomonlar ishonishi mumkin bo'lgan bosqichma-bosqich vizual hisobotni oladi.",
     "clients.3.t": "Bosh pudratchilar", "clients.3.d": "Nizolar, topshiruv va ichki nazorat uchun uzluksiz vizual yozuvni saqlab boradi.",
     "product.label": "To'liq paket", "product.title": "Hammasi bitta hamkorlikda.", "product.note": "Uskuna, monitoring va tayyor topshiruv bitta tizimda.",
-    "product.0.t": "Uskuna", "product.0.d": "Sanoat timelapse kamerasi, uzoq muddatli tashqi o'rnatish va masofaviy aloqa.",
+    "product.0.t": "Uskuna", "product.0.d": "Sanoat timelapse kamerasi, uzoq muddatli tashqi o'rnatish va turar joy, sanoat hamda infratuzilma maydonlari uchun masofaviy aloqa.",
     "product.1.t": "Jonli monitoring", "product.1.d": "Masofaviy panel, arxivga kirish, ixtiyoriy live widget va tez ulashish.",
-    "product.2.t": "Film ishlab chiqarish", "product.2.d": "Montaj qilingan timelapse, yer usti kadrlari, dron tasvirlari va e'lon qilishga tayyor yakuniy material.",
+    "product.2.t": "Film ishlab chiqarish", "product.2.d": "Montaj qilingan timelapse, yer usti kadrlari, dron tasvirlari va turar joylar, zavodlar hamda muhandislik inshootlari uchun tayyor yakuniy material.",
     "cta.title": "Qurayotgan narsangizni <em>hujjatlang</em>.", "cta.note": "Qurilish jarayonini biznes aktiviga aylantirishga tayyormisiz?",
     "cta.copy": "Loyihangiz haqida yozing. Biz sozlash, yozib borish va yakuniy topshiruvni o'z zimmamizga olamiz.",
     "cta.primary": "Yozing", "cta.secondary": "Xizmatlarni ko'rish",
@@ -376,15 +447,20 @@ const i18n = {
     "hero.copy": "От первого котлована до финальной сдачи: индустриальные камеры на объекте, продакшн-команда под рукой и готовый фильм, который помогает продавать следующую очередь еще до завершения текущей.",
     "hero.stat1": "Непрерывная съемка", "hero.stat2": "Панорамное разрешение", "hero.stat3": "Опциональный обзор площадки",
     "showreel.label": "Шоурил", "showreel.title": "Ход строительства становится <em>активом для продаж</em>.", "showreel.copy": "Живой архив стройки, превращенный в фильм для публикации.",
+    "showreel.featuredKicker": "Главный кейс", "showreel.featuredTitle": "Долгосрочный таймлапс развития городского района", "showreel.featuredCopy": "Этот ролик открывается на YouTube, чтобы обойти ограничения встроенного плеера и показать проект в нормальном качестве.",
     "manifesto.title": "Покупатели не покупают чертежи. Они покупают <em>доказательство</em>.",
     "manifesto.note": "Сильное визуальное подтверждение снижает тревожность покупателей и поддерживает продажи на стадии строительства.",
     "manifesto.p1": "Крупные жилые и инфраструктурные проекты оценивают задолго до завершения. Инвесторы, покупатели и кредиторы хотят видеть темп, качество и ответственность в реальном времени.",
     "manifesto.p2": "Мы объединяем индустриальный таймлапс, съемку с дрона и постпродакшн в одну услугу, которая одновременно работает как документация, отчетность и маркетинг.",
-    "services.label": "Услуги",
+    "services.label": "Услуги", "services.mediaNote": "Ниже несколько примеров с канала, привязанных по смыслу к услугам выше.",
     "services.0.t": "Установка таймлапс-камер", "services.0.d": "Мы устанавливаем индустриальные камеры прямо на площадке: защищенные от погоды, с солнечным питанием, удаленным доступом и готовностью к долгой автономной работе.",
     "services.1.t": "Готовый фильм", "services.1.d": "Сырой таймлапс - только начало. Мы сдаем смонтированный фильм с кадрами с площадки, дрон-съемкой, музыкой, графикой и субтитрами.",
-    "services.2.t": "Дрон и аэросъемка", "services.2.d": "Динамичные кадры с воздуха, панорамный обзор площадки, поддержка инспекций и материал для технических и коммерческих задач.",
-    "services.3.t": "Онлайн-мониторинг и web-widget", "services.3.d": "Единая панель для всех камер, архив проекта и встраиваемая живая трансляция для сайта, офиса продаж или отчетов инвесторам.",
+    "services.2.t": "Дрон и аэросъемка", "services.2.d": "Динамичные кадры с воздуха, панорамный обзор площадки, поддержка инспекций и материал для жилых проектов, инженерных сооружений, дорог, мостов и тоннелей.",
+    "services.3.t": "Онлайн-мониторинг и web-widget", "services.3.d": "Единая панель для всех камер, архив проекта и встраиваемая живая трансляция для сайта, офиса продаж, отчетов инвесторам или промышленного и инфраструктурного мониторинга.",
+    "videos.0.t": "Двухлетняя жилая стройка", "videos.0.d": "Наглядный пример долгосрочного сопровождения жилого строительства для девелоперов и команд продаж.",
+    "videos.1.t": "Таймлапс бизнес-центра", "videos.1.d": "Подходит для коммерческой недвижимости, апдейтов инвесторам и поэтапных презентаций.",
+    "videos.2.t": "Метро и тоннельные работы", "videos.2.d": "Сильный инфраструктурный пример для тоннелей, инженерных систем и технически сложных объектов.",
+    "videos.3.t": "Строительство промышленного объекта", "videos.3.d": "Показывает документирование завода или производственного комплекса для собственников, кредиторов и EPC-команд.",
     "process.label": "Как это работает", "process.title": "Простой процесс. <br />Сильный результат.", "process.copy": "Одна команда от оценки площадки до финальной выдачи.",
     "process.0.t": "Оценка площадки", "process.0.d": "Мы определяем точки установки камер, питание, связь, требования по безопасности и визуальные цели проекта.",
     "process.1.t": "Монтаж оборудования", "process.1.d": "Оборудование устанавливается, калибруется и подключается к удаленному мониторингу, чтобы запись началась сразу.",
@@ -393,13 +469,13 @@ const i18n = {
     "clients.label": "С кем мы работаем", "clients.title": "Создано для тех, кто строит.", "clients.note": "Коммерческая ценность для проектов, где прогресс должен быть видимым.",
     "clients.copy": "Наши клиенты - девелоперы, подрядчики, инфраструктурные команды и владельцы проектов, которым нужна убедительная визуальная отчетность.",
     "clients.0.t": "Жилые девелоперы", "clients.0.d": "Используют долгосрочный таймлапс и готовые фильмы, чтобы поддерживать продажи и показывать движение стройки по графику.",
-    "clients.1.t": "Инфраструктурные и государственные проекты", "clients.1.d": "Получают структурированную визуальную документацию для отчетности, соответствия требованиям и публичной подотчетности.",
+    "clients.1.t": "Инфраструктурные и государственные проекты", "clients.1.d": "Получают структурированную визуальную документацию для дорог, мостов, тоннелей, инженерных сетей и других проектов, где важны отчетность, соответствие требованиям и публичная подотчетность.",
     "clients.2.t": "Иностранные инвесторы и кредиторы", "clients.2.d": "Получают поэтапную визуальную отчетность, которой можно доверять даже без присутствия на площадке.",
     "clients.3.t": "Генеральные подрядчики", "clients.3.d": "Сохраняют непрерывную визуальную историю для споров, сдачи этапов и внутреннего контроля.",
     "product.label": "Полный пакет", "product.title": "Все в одном сотрудничестве.", "product.note": "Оборудование, мониторинг и готовый результат в одной услуге.",
-    "product.0.t": "Оборудование", "product.0.d": "Индустриальная таймлапс-камера, долговременная наружная установка и удаленная связь для сложных площадок.",
+    "product.0.t": "Оборудование", "product.0.d": "Индустриальная таймлапс-камера, долговременная наружная установка и удаленная связь для сложных жилых, промышленных и инфраструктурных площадок.",
     "product.1.t": "Онлайн-мониторинг", "product.1.d": "Удаленная панель, доступ к архиву, опциональный live widget и быстрое распространение материалов внутри команды.",
-    "product.2.t": "Видеопродакшн", "product.2.d": "Смонтированные таймлапс-сцены, наземная съемка, кадры с дрона, субтитры и графика, готовые к публикации.",
+    "product.2.t": "Видеопродакшн", "product.2.d": "Смонтированные таймлапс-сцены, наземная съемка, кадры с дрона, субтитры и графика для жилых объектов, заводов и инженерных сооружений.",
     "cta.title": "Документируйте то, что <em>строите</em>.", "cta.note": "Готовы превратить ход строительства в бизнес-актив?",
     "cta.copy": "Расскажите о своем проекте. Мы берем на себя установку, съемку и финальную выдачу.",
     "cta.primary": "Написать нам", "cta.secondary": "Посмотреть услуги",
@@ -446,6 +522,57 @@ try {
   if (saved && i18n[saved]) defaultLang = saved;
 } catch (e) {}
 applyLanguage(defaultLang);
+
+const servicesPlayerFrame = document.getElementById("services-player-frame");
+const servicesPlayerLink = document.getElementById("services-player-link");
+const videoCarousel = document.querySelector("[data-video-carousel]");
+const videoButtons = Array.from(document.querySelectorAll(".video-card[data-video-id]"));
+const prevButton = document.querySelector("[data-carousel-prev]");
+const nextButton = document.querySelector("[data-carousel-next]");
+
+function buildEmbedUrl(videoId) {
+  const params = new URLSearchParams({
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1"
+  });
+
+  if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+    params.set("origin", window.location.origin);
+    params.set("enablejsapi", "1");
+  }
+
+  return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}
+
+function setActiveVideo(button) {
+  if (!button || !servicesPlayerFrame || !servicesPlayerLink) return;
+  const videoId = button.dataset.videoId;
+  const videoUrl = button.dataset.videoUrl;
+  servicesPlayerFrame.src = buildEmbedUrl(videoId);
+  servicesPlayerLink.href = videoUrl;
+  videoButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+}
+
+videoButtons.forEach((button) => {
+  button.addEventListener("click", () => setActiveVideo(button));
+});
+
+if (prevButton && videoCarousel) {
+  prevButton.addEventListener("click", () => {
+    videoCarousel.scrollBy({ left: -320, behavior: "smooth" });
+  });
+}
+
+if (nextButton && videoCarousel) {
+  nextButton.addEventListener("click", () => {
+    videoCarousel.scrollBy({ left: 320, behavior: "smooth" });
+  });
+}
+
+if (videoButtons.length > 0) {
+  setActiveVideo(videoButtons[0]);
+}
 </script>
 </body>
 </html>
