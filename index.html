@@ -15,14 +15,15 @@
   .logo,.footer-logo{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;color:var(--white)} .logo span,.footer-logo span{color:var(--gold)}
   .logo{font-size:1.05rem}.footer-logo{font-size:.9rem;color:var(--muted)}
   .nav-links,.footer-links{display:flex;gap:30px;list-style:none;align-items:center}
-  .nav-links a,.footer-links a,.nav-cta,.lang-btn{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.nav-links a,.footer-links a,.nav-cta,.lang-btn,.nav-camera-login{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
   .nav-links a,.footer-links a{color:var(--muted)} .nav-links a:hover,.footer-links a:hover{color:var(--white)}
-  .nav-right{display:flex;align-items:center;gap:16px}
-  .lang-switcher{display:inline-flex;gap:6px;padding:6px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
-  .lang-btn{border:none;background:transparent;color:var(--muted2);padding:8px 10px;cursor:pointer}.lang-btn.active,.lang-btn:hover{background:var(--gold);color:var(--black)}
-  .nav-cta,.btn-secondary{color:var(--gold);border:1px solid var(--gold-dim);padding:12px 22px;transition:.25s}
-  .nav-cta:hover,.btn-secondary:hover{background:var(--gold-pale);border-color:var(--gold)}
-  section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-bottom:56px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.nav-right{display:flex;align-items:center;gap:16px}
+.lang-switcher{display:inline-flex;gap:6px;padding:6px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+.lang-btn{border:none;background:transparent;color:var(--muted2);padding:8px 10px;cursor:pointer}.lang-btn.active,.lang-btn:hover{background:var(--gold);color:var(--black)}
+.nav-cta,.btn-secondary{color:var(--gold);border:1px solid var(--gold-dim);padding:12px 22px;transition:.25s}
+.nav-cta:hover,.btn-secondary:hover{background:var(--gold-pale);border-color:var(--gold)}
+.nav-camera-login{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--border);color:var(--white);background:rgba(255,255,255,.03);opacity:.68;cursor:default;user-select:none;white-space:nowrap}
+section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-bottom:56px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
   .hero-bg,.hero-lines,.hero-accent{position:absolute;inset:0}.hero-bg{background:linear-gradient(to right,rgba(8,8,7,.96) 38%,rgba(8,8,7,.45) 100%),linear-gradient(to top,rgba(8,8,7,1) 0%,transparent 60%);z-index:1}
   .hero-lines::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,90,.04) 1px,transparent 1px);background-size:80px 80px;animation:grid 30s linear infinite}
   .hero-accent{left:auto;right:26%;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-dim) 25%,var(--gold-dim) 75%,transparent);opacity:.45;z-index:2}
@@ -110,14 +111,15 @@
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <div class="lang-switcher" aria-label="Language switcher">
-      <button class="lang-btn active" type="button" data-lang-switch="en">EN</button>
-      <button class="lang-btn" type="button" data-lang-switch="sr">SR</button>
-      <button class="lang-btn" type="button" data-lang-switch="uz">UZ</button>
-      <button class="lang-btn" type="button" data-lang-switch="ru">RU</button>
-    </div>
-    <a href="#contact" class="nav-cta" data-i18n="nav.cta">Write to us</a>
-  </div>
+        <div class="lang-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang-switch="en">EN</button>
+          <button class="lang-btn" type="button" data-lang-switch="sr">SR</button>
+          <button class="lang-btn" type="button" data-lang-switch="uz">UZ</button>
+          <button class="lang-btn" type="button" data-lang-switch="ru">RU</button>
+        </div>
+        <button class="nav-camera-login" type="button" aria-disabled="true" data-i18n="nav.cameraLogin">My cameras login</button>
+        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Write to us</a>
+      </div>
 </nav>
 
 <section class="hero" id="hero">
@@ -307,7 +309,7 @@
 const i18n = {
   en: {
     pageTitle: "SiteCam 24 - Construction Timelapse",
-    "nav.services": "Services", "nav.process": "Process", "nav.clients": "Clients", "nav.contact": "Contact", "nav.cta": "Write to us",
+    "nav.services": "Services", "nav.process": "Process", "nav.clients": "Clients", "nav.contact": "Contact", "nav.cameraLogin": "My cameras login", "nav.cta": "Write to us",
     "hero.eyebrow": "Construction timelapse and film production",
     "hero.title": "We film the <em>story</em> of your build.",
     "hero.subtitle": "Long-term visual proof for developers, contractors, and project owners.",
@@ -355,7 +357,7 @@ const i18n = {
   },
   sr: {
     pageTitle: "SiteCam 24 - Tajmlaps i filmska produkcija gradnje",
-    "nav.services": "Usluge", "nav.process": "Proces", "nav.clients": "Klijenti", "nav.contact": "Kontakt", "nav.cta": "Pišite nam",
+    "nav.services": "Usluge", "nav.process": "Proces", "nav.clients": "Klijenti", "nav.contact": "Kontakt", "nav.cameraLogin": "Prijava na moje kamere", "nav.cta": "Pišite nam",
     "hero.eyebrow": "Tajmlaps i filmska produkcija gradnje",
     "hero.title": "Snimamo <em>priču</em> vaše gradnje.",
     "hero.subtitle": "Dugoročni vizuelni dokaz za investitore, izvođače i vlasnike projekata.",
@@ -403,7 +405,7 @@ const i18n = {
   },
   uz: {
     pageTitle: "SiteCam 24 - Qurilish timelapse xizmati",
-    "nav.services": "Xizmatlar", "nav.process": "Jarayon", "nav.clients": "Mijozlar", "nav.contact": "Aloqa", "nav.cta": "Yozing",
+    "nav.services": "Xizmatlar", "nav.process": "Jarayon", "nav.clients": "Mijozlar", "nav.contact": "Aloqa", "nav.cameraLogin": "Mening kameralarimga kirish", "nav.cta": "Yozing",
     "hero.eyebrow": "Qurilish timelapse va film ishlab chiqarish",
     "hero.title": "Qurilishingiz <em>hikoyasi</em>ni suratga olamiz.",
     "hero.subtitle": "Developerlar, pudratchilar va loyiha egalari uchun uzoq muddatli vizual isbot.",
@@ -451,7 +453,7 @@ const i18n = {
   },
   ru: {
     pageTitle: "SiteCam 24 - Таймлапс строительства",
-    "nav.services": "Услуги", "nav.process": "Процесс", "nav.clients": "Клиенты", "nav.contact": "Контакты", "nav.cta": "Написать нам",
+    "nav.services": "Услуги", "nav.process": "Процесс", "nav.clients": "Клиенты", "nav.contact": "Контакты", "nav.cameraLogin": "Вход к моим камерам", "nav.cta": "Написать нам",
     "hero.eyebrow": "Таймлапс и видеопродакшн строительства",
     "hero.title": "Мы снимаем <em>историю</em> вашей стройки.",
     "hero.subtitle": "Долгосрочное визуальное подтверждение для девелоперов, подрядчиков и владельцев проектов.",
