@@ -22,7 +22,8 @@
 .lang-btn{border:none;background:transparent;color:var(--muted2);padding:8px 10px;cursor:pointer}.lang-btn.active,.lang-btn:hover{background:var(--gold);color:var(--black)}
 .nav-cta,.btn-secondary{color:var(--gold);border:1px solid var(--gold-dim);padding:12px 22px;transition:.25s}
 .nav-cta:hover,.btn-secondary:hover{background:var(--gold-pale);border-color:var(--gold)}
-.nav-camera-login{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--border);color:var(--white);background:rgba(255,255,255,.03);opacity:.68;cursor:default;user-select:none;white-space:nowrap}
+.nav-camera-login{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--border);color:var(--white);background:rgba(255,255,255,.03);opacity:.82;white-space:nowrap;transition:.25s}
+.nav-camera-login:hover{border-color:var(--gold-dim);background:rgba(200,164,90,.08);color:var(--gold)}
 section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-bottom:56px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
   .hero-bg,.hero-lines,.hero-accent{position:absolute;inset:0}.hero-bg{background:linear-gradient(to right,rgba(8,8,7,.96) 38%,rgba(8,8,7,.45) 100%),linear-gradient(to top,rgba(8,8,7,1) 0%,transparent 60%);z-index:1}
   .hero-lines::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,90,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,90,.04) 1px,transparent 1px);background-size:80px 80px;animation:grid 30s linear infinite}
@@ -117,7 +118,7 @@ section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-botto
           <button class="lang-btn" type="button" data-lang-switch="uz">UZ</button>
           <button class="lang-btn" type="button" data-lang-switch="ru">RU</button>
         </div>
-        <button class="nav-camera-login" type="button" aria-disabled="true" data-i18n="nav.cameraLogin">My cameras login</button>
+        <a class="nav-camera-login" href="https://admin.sitecam24.ru/admin" data-i18n="nav.cameraLogin">My cameras login</a>
         <a href="#contact" class="nav-cta" data-i18n="nav.cta">Write to us</a>
       </div>
 </nav>
@@ -274,7 +275,7 @@ section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-botto
       <p class="subtitle" data-i18n="contact.note">Initial consultation is always free.</p>
       <p class="contact-copy" data-i18n="contact.copy">We work with projects across Serbia, the Balkans, and international teams that need reliable long-term construction coverage.</p>
       <p class="contact-line"><strong data-i18n="contact.email">Email:</strong> <a href="mailto:hello@sitecam24.com">hello@sitecam24.com</a></p>
-      <p class="contact-line"><strong data-i18n="contact.phone">Phone:</strong> <a href="tel:+381000000000">+381 00 000 0000</a></p>
+      <p class="contact-line"><strong data-i18n="contact.phone">Phone:</strong> <span data-i18n-html="contact.phoneValue"><a href="tel:+381628243216">+381 62 824 3216</a></span></p>
       <p class="contact-line"><strong data-i18n="contact.locationLabel">Location:</strong> <span data-i18n="contact.location">Belgrade and Novi Sad, Serbia</span></p>
     </div>
     <div>
@@ -350,7 +351,7 @@ const i18n = {
     "cta.primary": "Write to us", "cta.secondary": "View services",
     "contact.label": "Contact", "contact.title": "Let's talk about your project.", "contact.note": "Initial consultation is always free.",
     "contact.copy": "We work with projects across Serbia, the Balkans, and international teams that need reliable long-term construction coverage.",
-    "contact.email": "Email:", "contact.phone": "Phone:", "contact.locationLabel": "Location:", "contact.location": "Belgrade and Novi Sad, Serbia",
+    "contact.email": "Email:", "contact.phone": "Phone:", "contact.phoneValue": "<a href=\"tel:+381628243216\">+381 62 824 3216</a> / <a href=\"tel:+998917827021\">+998 91 782 70 21</a>", "contact.locationLabel": "Location:", "contact.location": "Novi Sad, Serbia; Tashkent, Uzbekistan",
     "form.name": "Your name", "form.namePh": "John Smith", "form.company": "Company", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "john@company.com", "form.project": "About your project", "form.projectPh": "Project size, location, timeline...",
     "form.submit": "Send message", "footer.copy": "© 2026 SiteCam 24. All rights reserved."
@@ -398,7 +399,7 @@ const i18n = {
     "cta.primary": "Pišite nam", "cta.secondary": "Pogledajte usluge",
     "contact.label": "Kontakt", "contact.title": "Hajde da pričamo o vašem projektu.", "contact.note": "Inicijalne konsultacije su uvek besplatne.",
     "contact.copy": "Radimo sa projektima širom Srbije, Balkana i sa međunarodnim timovima kojima je potrebno pouzdano dugoročno praćenje gradnje.",
-    "contact.email": "Email:", "contact.phone": "Telefon:", "contact.locationLabel": "Lokacija:", "contact.location": "Beograd i Novi Sad, Srbija",
+    "contact.email": "Email:", "contact.phone": "Telefon:", "contact.phoneValue": "<a href=\"tel:+381628243216\">+381 62 824 3216</a>", "contact.locationLabel": "Lokacija:", "contact.location": "Novi Sad, Serbia",
     "form.name": "Vaše ime", "form.namePh": "Marko Nikolić", "form.company": "Kompanija", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "marko@company.rs", "form.project": "O vašem projektu", "form.projectPh": "Veličina projekta, lokacija, rokovi...",
     "form.submit": "Pošalji poruku", "footer.copy": "© 2026 SiteCam 24. Sva prava zadržana."
@@ -446,7 +447,7 @@ const i18n = {
     "cta.primary": "Yozing", "cta.secondary": "Xizmatlarni ko'rish",
     "contact.label": "Aloqa", "contact.title": "Loyihangiz haqida gaplashaylik.", "contact.note": "Dastlabki maslahat bepul.",
     "contact.copy": "Biz Serbiya, Bolqon va xalqaro jamoalar bilan ishlaymiz.",
-    "contact.email": "Email:", "contact.phone": "Telefon:", "contact.locationLabel": "Joylashuv:", "contact.location": "Belgrad va Novi Sad, Serbiya",
+    "contact.email": "Email:", "contact.phone": "Telefon:", "contact.phoneValue": "<a href=\"tel:+998977268666\">+998 97 726 86 66</a>", "contact.locationLabel": "Joylashuv:", "contact.location": "Tashkent, Uzbekistan",
     "form.name": "Ismingiz", "form.namePh": "Aziz Karimov", "form.company": "Kompaniya", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "aziz@company.uz", "form.project": "Loyihangiz haqida", "form.projectPh": "Loyiha hajmi, lokatsiya, muddatlar...",
     "form.submit": "Xabar yuborish", "footer.copy": "© 2026 SiteCam 24. Barcha huquqlar himoyalangan."
@@ -494,7 +495,7 @@ const i18n = {
     "cta.primary": "Написать нам", "cta.secondary": "Посмотреть услуги",
     "contact.label": "Контакты", "contact.title": "Давайте обсудим ваш проект.", "contact.note": "Первичная консультация всегда бесплатна.",
     "contact.copy": "Мы работаем с проектами по всей Сербии, на Балканах и с международными командами.",
-    "contact.email": "Email:", "contact.phone": "Телефон:", "contact.locationLabel": "Локация:", "contact.location": "Белград и Нови-Сад, Сербия",
+    "contact.email": "Email:", "contact.phone": "Телефон:", "contact.phoneValue": "<a href=\"tel:+998917827021\">+998 91 782 70 21</a> / <a href=\"tel:+998977268666\">+998 97 726 86 66</a>", "contact.locationLabel": "Локация:", "contact.location": "Tashkent, Uzbekistan",
     "form.name": "Ваше имя", "form.namePh": "Иван Петров", "form.company": "Компания", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "ivan@company.ru", "form.project": "О вашем проекте", "form.projectPh": "Размер проекта, локация, сроки...",
     "form.submit": "Отправить сообщение", "footer.copy": "© 2026 SiteCam 24. Все права защищены."
