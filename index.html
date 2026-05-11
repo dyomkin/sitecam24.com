@@ -617,6 +617,10 @@ function resetFormTimer() {
   if (formStartedAt) formStartedAt.value = String(Date.now());
 }
 
+function refreshFormSession() {
+  resetFormTimer();
+}
+
 async function loadCaptcha() {
   if (!captchaImage || !captchaToken) return;
   const response = await fetch("/api/captcha", { headers: { Accept: "application/json" } });
@@ -625,6 +629,7 @@ async function loadCaptcha() {
   captchaImage.src = payload.image;
   captchaToken.value = payload.token;
   if (captchaInput) captchaInput.value = "";
+  refreshFormSession();
 }
 
 resetFormTimer();
@@ -637,6 +642,9 @@ if (captchaRefresh) {
 }
 
 if (contactForm) {
+  contactForm.addEventListener("focusin", refreshFormSession, { once: true });
+  contactForm.addEventListener("input", refreshFormSession, { once: true });
+
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const lang = document.documentElement.lang || "en";
