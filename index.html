@@ -99,6 +99,7 @@ section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-botto
   .field input,.field textarea{width:100%;border:1px solid var(--border);background:var(--black);color:var(--white);padding:14px 18px;font:inherit;outline:none;resize:none}.field input:focus,.field textarea:focus{border-color:var(--gold-dim)}
   .field input::placeholder,.field textarea::placeholder{color:var(--muted2)}
   .hp-field{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}.form-status{min-height:22px;margin-top:14px;color:var(--muted);font-size:.86rem;line-height:1.5}.form-status.is-error{color:#e6a7a7}.form-status.is-success{color:var(--gold)}
+  .captcha-field{max-width:300px}.captcha-row{display:flex;align-items:center;gap:10px}.captcha-image{width:150px;height:46px;border:1px solid var(--border);background:var(--surface2);object-fit:cover}.captcha-input{max-width:72px;text-align:center}.captcha-refresh{width:38px;height:38px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1}.captcha-refresh:hover{border-color:var(--gold-dim);color:var(--gold)}
   footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:40px 56px;border-top:1px solid var(--border)} .footer-copy{color:var(--muted2);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
   @media (max-width:1100px){.hero-sub,.manifesto-grid,.clients-grid,.contact-grid{grid-template-columns:1fr;gap:48px}.steps{grid-template-columns:repeat(2,1fr);gap:40px 0}.steps::before,.hero-accent{display:none}}
   @media (max-width:900px){nav,section,footer{padding-left:22px;padding-right:22px}nav{align-items:flex-start;flex-wrap:wrap;gap:14px}.nav-links{order:3;width:100%;gap:18px;flex-wrap:wrap}.nav-right{width:100%;justify-content:space-between}.cards,.product-grid,.steps{grid-template-columns:1fr}.client{grid-template-columns:40px 1fr}footer,.footer-links{flex-direction:column;text-align:center}.photo-card,.video-card{min-width:286px;flex-basis:286px}.carousel-shell{padding:0 44px}.carousel-btn{width:32px;height:60px}.photo-lightbox{padding:18px}.photo-lightbox-inner{width:min(1240px,calc(100vw - 24px))}}
@@ -288,7 +289,15 @@ section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-botto
       <div class="field"><label for="company" data-i18n="form.company">Company</label><input id="company" name="company" type="text" data-i18n-placeholder="form.companyPh" placeholder="Atlas Development" /></div>
       <div class="field"><label for="email" data-i18n="form.email">Email</label><input id="email" name="email" type="email" data-i18n-placeholder="form.emailPh" placeholder="john@company.com" required /></div>
       <div class="field"><label for="project" data-i18n="form.project">About your project</label><textarea id="project" name="project" rows="4" data-i18n-placeholder="form.projectPh" placeholder="Project size, location, timeline..." required></textarea></div>
-      <div class="field"><label for="captcha" data-i18n="form.captcha">How much is 3 + 4?</label><input id="captcha" name="captcha" type="text" inputmode="numeric" data-i18n-placeholder="form.captchaPh" placeholder="7" required /></div>
+      <div class="field captcha-field">
+        <label for="captcha" data-i18n="form.captcha">Security check</label>
+        <input id="captcha-token" name="captcha_token" type="hidden" />
+        <div class="captcha-row">
+          <img id="captcha-image" class="captcha-image" alt="Captcha" />
+          <input id="captcha" class="captcha-input" name="captcha" type="text" inputmode="numeric" autocomplete="off" required />
+          <button id="captcha-refresh" class="captcha-refresh" type="button" aria-label="Refresh captcha">↻</button>
+        </div>
+      </div>
       <button class="submit" type="submit" data-i18n="form.submit">Send message</button>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
@@ -361,7 +370,7 @@ const i18n = {
     "contact.telegram": "Telegram:", "contact.phone": "Phone:", "contact.phoneValue": "<a href=\"tel:+381628243216\">+381 62 824 3216</a> / <a href=\"tel:+998917827021\">+998 91 782 70 21</a>", "contact.locationLabel": "Location:", "contact.location": "Novi Sad, Serbia; Tashkent, Uzbekistan",
     "form.name": "Your name", "form.namePh": "John Smith", "form.company": "Company", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "john@company.com", "form.project": "About your project", "form.projectPh": "Project size, location, timeline...",
-    "form.captcha": "How much is 3 + 4?", "form.captchaPh": "7", "form.submit": "Send message", "form.sending": "Sending...", "form.success": "Thank you. Your message has been sent.", "form.error": "Please check the form and try again.", "form.rateLimit": "Please wait a little before sending again.", "footer.copy": "© 2026 SiteCam 24. All rights reserved."
+    "form.captcha": "Security check", "form.submit": "Send message", "form.sending": "Sending...", "form.success": "Thank you. Your message has been sent.", "form.error": "Please check the form and try again.", "form.rateLimit": "Please wait a little before sending again.", "footer.copy": "© 2026 SiteCam 24. All rights reserved."
   },
   sr: {
     pageTitle: "SiteCam 24 - Tajmlaps i filmska produkcija gradnje",
@@ -409,7 +418,7 @@ const i18n = {
     "contact.telegram": "Telegram:", "contact.phone": "Telefon:", "contact.phoneValue": "<a href=\"tel:+381628243216\">+381 62 824 3216</a>", "contact.locationLabel": "Lokacija:", "contact.location": "Novi Sad, Serbia",
     "form.name": "Vaše ime", "form.namePh": "Marko Nikolić", "form.company": "Kompanija", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "marko@company.rs", "form.project": "O vašem projektu", "form.projectPh": "Veličina projekta, lokacija, rokovi...",
-    "form.captcha": "Koliko je 3 + 4?", "form.captchaPh": "7", "form.submit": "Pošalji poruku", "form.sending": "Slanje...", "form.success": "Hvala. Poruka je poslata.", "form.error": "Proverite formu i pokušajte ponovo.", "form.rateLimit": "Sačekajte malo pre sledećeg slanja.", "footer.copy": "© 2026 SiteCam 24. Sva prava zadržana."
+    "form.captcha": "Bezbednosna provera", "form.submit": "Pošalji poruku", "form.sending": "Slanje...", "form.success": "Hvala. Poruka je poslata.", "form.error": "Proverite formu i pokušajte ponovo.", "form.rateLimit": "Sačekajte malo pre sledećeg slanja.", "footer.copy": "© 2026 SiteCam 24. Sva prava zadržana."
   },
   uz: {
     pageTitle: "SiteCam 24 - Qurilish timelapse xizmati",
@@ -457,7 +466,7 @@ const i18n = {
     "contact.telegram": "Telegram:", "contact.phone": "Telefon:", "contact.phoneValue": "<a href=\"tel:+998977268666\">+998 97 726 86 66</a>", "contact.locationLabel": "Joylashuv:", "contact.location": "Tashkent, Uzbekistan",
     "form.name": "Ismingiz", "form.namePh": "Aziz Karimov", "form.company": "Kompaniya", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "aziz@company.uz", "form.project": "Loyihangiz haqida", "form.projectPh": "Loyiha hajmi, lokatsiya, muddatlar...",
-    "form.captcha": "3 + 4 nechiga teng?", "form.captchaPh": "7", "form.submit": "Xabar yuborish", "form.sending": "Yuborilmoqda...", "form.success": "Rahmat. Xabaringiz yuborildi.", "form.error": "Formani tekshirib, qayta urinib ko'ring.", "form.rateLimit": "Yana yuborishdan oldin biroz kuting.", "footer.copy": "© 2026 SiteCam 24. Barcha huquqlar himoyalangan."
+    "form.captcha": "Xavfsizlik tekshiruvi", "form.submit": "Xabar yuborish", "form.sending": "Yuborilmoqda...", "form.success": "Rahmat. Xabaringiz yuborildi.", "form.error": "Formani tekshirib, qayta urinib ko'ring.", "form.rateLimit": "Yana yuborishdan oldin biroz kuting.", "footer.copy": "© 2026 SiteCam 24. Barcha huquqlar himoyalangan."
   },
   ru: {
     pageTitle: "SiteCam 24 - Таймлапс строительства",
@@ -505,7 +514,7 @@ const i18n = {
     "contact.telegram": "Telegram:", "contact.phone": "Телефон:", "contact.phoneValue": "<a href=\"tel:+998917827021\">+998 91 782 70 21</a> / <a href=\"tel:+998977268666\">+998 97 726 86 66</a>", "contact.locationLabel": "Локация:", "contact.location": "Tashkent, Uzbekistan",
     "form.name": "Ваше имя", "form.namePh": "Иван Петров", "form.company": "Компания", "form.companyPh": "Atlas Development",
     "form.email": "Email", "form.emailPh": "ivan@company.ru", "form.project": "О вашем проекте", "form.projectPh": "Размер проекта, локация, сроки...",
-    "form.captcha": "Сколько будет 3 + 4?", "form.captchaPh": "7", "form.submit": "Отправить сообщение", "form.sending": "Отправляем...", "form.success": "Спасибо. Сообщение отправлено.", "form.error": "Проверьте форму и попробуйте ещё раз.", "form.rateLimit": "Подождите немного перед повторной отправкой.", "footer.copy": "© 2026 SiteCam 24. Все права защищены."
+    "form.captcha": "Проверка", "form.submit": "Отправить сообщение", "form.sending": "Отправляем...", "form.success": "Спасибо. Сообщение отправлено.", "form.error": "Проверьте форму и попробуйте ещё раз.", "form.rateLimit": "Подождите немного перед повторной отправкой.", "footer.copy": "© 2026 SiteCam 24. Все права защищены."
   }
 };
 
@@ -561,6 +570,10 @@ const contactForm = document.getElementById("contact-form");
 const formStartedAt = document.getElementById("form-started-at");
 const formStatus = document.getElementById("form-status");
 const submitButton = contactForm ? contactForm.querySelector(".submit") : null;
+const captchaImage = document.getElementById("captcha-image");
+const captchaToken = document.getElementById("captcha-token");
+const captchaInput = document.getElementById("captcha");
+const captchaRefresh = document.getElementById("captcha-refresh");
 
 function buildEmbedUrl(videoId) {
   const params = new URLSearchParams({
@@ -604,7 +617,24 @@ function resetFormTimer() {
   if (formStartedAt) formStartedAt.value = String(Date.now());
 }
 
+async function loadCaptcha() {
+  if (!captchaImage || !captchaToken) return;
+  const response = await fetch("/api/captcha", { headers: { Accept: "application/json" } });
+  const payload = await response.json();
+  if (!response.ok || !payload.ok) throw new Error("Captcha failed");
+  captchaImage.src = payload.image;
+  captchaToken.value = payload.token;
+  if (captchaInput) captchaInput.value = "";
+}
+
 resetFormTimer();
+loadCaptcha().catch(() => setFormStatus((i18n[document.documentElement.lang] || i18n.en)["form.error"], "error"));
+
+if (captchaRefresh) {
+  captchaRefresh.addEventListener("click", () => {
+    loadCaptcha().catch(() => setFormStatus((i18n[document.documentElement.lang] || i18n.en)["form.error"], "error"));
+  });
+}
 
 if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
@@ -631,12 +661,14 @@ if (contactForm) {
 
       if (!response.ok || !payload.ok) {
         setFormStatus(payload.message || dict["form.error"], "error");
+        loadCaptcha().catch(() => {});
         return;
       }
 
       localStorage.setItem("sitecam-last-submit", String(Date.now()));
       contactForm.reset();
       resetFormTimer();
+      loadCaptcha().catch(() => {});
       setFormStatus(dict["form.success"], "success");
     } catch (error) {
       setFormStatus(dict["form.error"], "error");
