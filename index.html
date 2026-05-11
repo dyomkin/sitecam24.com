@@ -282,7 +282,6 @@ section{padding:110px 56px}.hero{min-height:90vh;padding-top:170px;padding-botto
       <p class="contact-line"><strong data-i18n="contact.locationLabel">Location:</strong> <span data-i18n="contact.location">Belgrade and Novi Sad, Serbia</span></p>
     </div>
     <form id="contact-form" action="/api/contact" method="post" novalidate>
-      <input id="form-started-at" type="hidden" name="form_started_at" />
       <input id="form-language" type="hidden" name="language" value="en" />
       <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
       <div class="field"><label for="name" data-i18n="form.name">Your name</label><input id="name" name="name" type="text" data-i18n-placeholder="form.namePh" placeholder="John Smith" required /></div>
@@ -567,7 +566,6 @@ const videoCarousel = document.querySelector("[data-video-carousel]");
 const prevButton = document.querySelector("[data-carousel-prev]");
 const nextButton = document.querySelector("[data-carousel-next]");
 const contactForm = document.getElementById("contact-form");
-const formStartedAt = document.getElementById("form-started-at");
 const formStatus = document.getElementById("form-status");
 const submitButton = contactForm ? contactForm.querySelector(".submit") : null;
 const captchaImage = document.getElementById("captcha-image");
@@ -613,14 +611,6 @@ function setFormStatus(message, type) {
   formStatus.classList.toggle("is-error", type === "error");
 }
 
-function resetFormTimer() {
-  if (formStartedAt) formStartedAt.value = String(Date.now());
-}
-
-function refreshFormSession() {
-  resetFormTimer();
-}
-
 async function loadCaptcha() {
   if (!captchaImage || !captchaToken) return;
   const response = await fetch("/api/captcha", { headers: { Accept: "application/json" } });
@@ -629,10 +619,8 @@ async function loadCaptcha() {
   captchaImage.src = payload.image;
   captchaToken.value = payload.token;
   if (captchaInput) captchaInput.value = "";
-  refreshFormSession();
 }
 
-resetFormTimer();
 loadCaptcha().catch(() => setFormStatus((i18n[document.documentElement.lang] || i18n.en)["form.error"], "error"));
 
 if (captchaRefresh) {
@@ -642,9 +630,6 @@ if (captchaRefresh) {
 }
 
 if (contactForm) {
-  contactForm.addEventListener("focusin", refreshFormSession, { once: true });
-  contactForm.addEventListener("input", refreshFormSession, { once: true });
-
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const lang = document.documentElement.lang || "en";
@@ -675,7 +660,6 @@ if (contactForm) {
 
       localStorage.setItem("sitecam-last-submit", String(Date.now()));
       contactForm.reset();
-      resetFormTimer();
       loadCaptcha().catch(() => {});
       setFormStatus(dict["form.success"], "success");
     } catch (error) {

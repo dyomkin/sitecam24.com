@@ -17,10 +17,9 @@ RECIPIENT = "hello@sitecam24.com"
 SENDER = "SiteCam24 <noreply@sitecam24.com>"
 MAX_BODY_BYTES = 16 * 1024
 MIN_FILL_SECONDS = 3
-MAX_FILL_SECONDS = 24 * 60 * 60
 RATE_WINDOW_SECONDS = 10 * 60
 RATE_LIMIT = 8
-CAPTCHA_TTL_SECONDS = 10 * 60
+CAPTCHA_TTL_SECONDS = 30 * 60
 
 RATE_BUCKETS = {}
 CAPTCHA_STORE = {}
@@ -66,17 +65,22 @@ def verify_captcha(token, answer):
 
     record = CAPTCHA_STORE.pop(token, None)
     if not record or record["expires_at"] < now:
-        return False
+        return False, 0
 
-    return clean(answer, 20) == str(record["answer"])
+    elapsed = now - record["issued_at"]
+    if elapsed < MIN_FILL_SECONDS:
+        return False, elapsed
+
+    return clean(answer, 20) == str(record["answer"]), elapsed
 
 
 def build_captcha():
     left = random.randint(2, 9)
     right = random.randint(2, 9)
     answer = left + right
+    now = time.time()
     token = secrets.token_urlsafe(24)
-    CAPTCHA_STORE[token] = {"answer": answer, "expires_at": time.time() + CAPTCHA_TTL_SECONDS}
+    CAPTCHA_STORE[token] = {"answer": answer, "issued_at": now, "expires_at": now + CAPTCHA_TTL_SECONDS}
     question = f"{left} + {right} = ?"
     rotation = random.randint(-4, 4)
     line_y = random.randint(22, 36)
@@ -154,17 +158,8 @@ class ContactHandler(BaseHTTPRequestHandler):
             json_response(self, 400, {"ok": False, "message": "Invalid request"})
             return
 
-        try:
-            started_ms = int(get("form_started_at"))
-        except ValueError:
-            started_ms = 0
-
-        elapsed = time.time() - (started_ms / 1000)
-        if elapsed < MIN_FILL_SECONDS or elapsed > MAX_FILL_SECONDS:
-            json_response(self, 400, {"ok": False, "message": "Invalid form timing"})
-            return
-
-        if not verify_captcha(get("captcha_token"), get("captcha")):
+        captcha_ok, elapsed = verify_captcha(get("captcha_token"), get("captcha"))
+        if not captcha_ok:
             json_response(self, 400, {"ok": False, "message": "Wrong captcha answer"})
             return
 
