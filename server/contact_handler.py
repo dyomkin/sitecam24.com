@@ -19,7 +19,7 @@ MAX_BODY_BYTES = 16 * 1024
 MIN_FILL_SECONDS = 3
 MAX_FILL_SECONDS = 24 * 60 * 60
 RATE_WINDOW_SECONDS = 10 * 60
-RATE_LIMIT = 3
+RATE_LIMIT = 8
 CAPTCHA_TTL_SECONDS = 10 * 60
 
 RATE_BUCKETS = {}
@@ -150,10 +150,6 @@ class ContactHandler(BaseHTTPRequestHandler):
         get = lambda key: data.get(key, [""])[0]
         ip = client_ip(self)
 
-        if rate_limited(ip):
-            json_response(self, 429, {"ok": False, "message": "Too many requests"})
-            return
-
         if clean(get("website")):
             json_response(self, 400, {"ok": False, "message": "Invalid request"})
             return
@@ -182,6 +178,10 @@ class ContactHandler(BaseHTTPRequestHandler):
 
         if not fields["name"] or "@" not in fields["email"] or not fields["project"]:
             json_response(self, 400, {"ok": False, "message": "Required fields are missing"})
+            return
+
+        if rate_limited(ip):
+            json_response(self, 429, {"ok": False, "message": "Too many requests"})
             return
 
         message = build_email(fields, ip, elapsed)
