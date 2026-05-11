@@ -647,7 +647,7 @@ if (contactForm) {
     try {
       const response = await fetch(contactForm.action, {
         method: "POST",
-        body: new FormData(contactForm),
+        body: new URLSearchParams(new FormData(contactForm)),
         headers: { Accept: "application/json" }
       });
       const payload = await response.json().catch(() => ({}));
